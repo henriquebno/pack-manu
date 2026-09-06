@@ -23,6 +23,7 @@ import { FinalCTASection } from './components/FinalCTASection';
 import { Footer } from './components/Footer';
 import { StickyBottomBar } from './components/StickyBottomBar';
 import { LegalModal } from './components/LegalModal';
+import { SalesNotification } from './components/SalesNotification';
 
 export default function App() {
   const [legalModalType, setLegalModalType] = useState<'terms' | 'privacy' | null>(null);
@@ -85,7 +86,10 @@ export default function App() {
       {/* 18. Sticky Floating CTA Bar */}
       <StickyBottomBar />
 
-      {/* 19. Legal Modal (Terms / Privacy) */}
+      {/* 19. Social Proof Sales Notification (8s interval, max 10 people) */}
+      <SalesNotification />
+
+      {/* 20. Legal Modal (Terms / Privacy) */}
       <LegalModal
         isOpen={legalModalType !== null}
         type={legalModalType}

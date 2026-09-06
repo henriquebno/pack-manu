@@ -12,9 +12,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
         
         {/* Brand */}
         <div className="flex items-center gap-2">
-          <span className="w-8 h-8 rounded-full bg-rose-600/20 text-rose-400 flex items-center justify-center font-serif-display font-bold">
-            M
-          </span>
           <span className="font-bold text-white text-lg font-serif-display tracking-tight">
             Pack Manu Stories
           </span>
