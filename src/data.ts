@@ -1,8 +1,9 @@
 import { BeforeAfterItem, TestimonialItem, BonusItem, FAQItem, StickerItem, StoryItem } from './types';
 
 export const CHECKOUT_LINKS = {
-  essencial: 'https://payment.ticto.app/O5515C365',
-  completo: 'https://payment.ticto.app/OB20B47EE',
+  essencial: 'https://lastlink.com/p/C7A2B2D27/checkout-payment/',
+  completo: 'https://lastlink.com/p/C2F77B591/checkout-payment/',
+  completoOferta27: 'https://lastlink.com/p/CDD343B37/checkout-payment/',
 };
 
 export const BEFORE_AFTER_DATA: BeforeAfterItem[] = [

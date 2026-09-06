@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CHECKOUT_LINKS } from '../data';
 import { Check, Sparkles, ShieldCheck, Zap, Heart, Gift, ArrowRight, Star } from 'lucide-react';
 import { SectionBadge, UnderlineStroke } from './TitleAccents';
+import { UpsellModal } from './UpsellModal';
 
 export const PricingSection: React.FC = () => {
+  const [isUpsellOpen, setIsUpsellOpen] = useState(false);
+
   return (
     <section id="planos" className="py-14 md:py-24 bg-[#FBF9F6] relative border-t border-neutral-200/60">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
@@ -78,15 +81,15 @@ export const PricingSection: React.FC = () => {
             </div>
 
             <div>
-              <a
-                href={CHECKOUT_LINKS.essencial}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-[#1D1D1F] hover:bg-neutral-800 active:scale-[0.98] text-white font-medium text-xs sm:text-sm py-3 px-5 rounded-full shadow-xs transition-all text-center flex items-center justify-center gap-2 group font-heading"
+              <button
+                id="btn-choose-essencial"
+                type="button"
+                onClick={() => setIsUpsellOpen(true)}
+                className="w-full bg-[#1D1D1F] hover:bg-neutral-800 active:scale-[0.98] text-white font-medium text-xs sm:text-sm py-3 px-5 rounded-full shadow-xs transition-all text-center flex items-center justify-center gap-2 group font-heading cursor-pointer"
               >
                 <span>QUERO O PACK ESSENCIAL</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </a>
+              </button>
 
               <div className="mt-3.5 flex items-center justify-center gap-2 text-[10px] text-neutral-500 font-sans-body">
                 <span className="flex items-center gap-1">
@@ -234,6 +237,9 @@ export const PricingSection: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Upsell Pop-up when choosing R$ 19,90 */}
+      <UpsellModal isOpen={isUpsellOpen} onClose={() => setIsUpsellOpen(false)} />
     </section>
   );
 };

