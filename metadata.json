@@ -1,0 +1,6 @@
+{
+  "name": "Pack Manu Stories",
+  "description": "+15.000 figurinhas e elementos para transformar seus Stories em poucos segundos com elegância e personalidade.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1D1D1F;
+    background-color: #FAF9F6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.025em;
+  }
+}
+
+.font-heading {
+  font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.025em;
+}
+
+.font-condensed {
+  font-family: 'Barlow Condensed', 'Bebas Neue', sans-serif;
+  letter-spacing: 0.015em;
+}
+
+.font-sans-body {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+}
+
+/* Apple-inspired smooth marquee scrolling animations */
+@keyframes scrollLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scrollLeft 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-right {
+  animation: scrollRight 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-slow {
+  animation: scrollLeft 45s linear infinite;
+  will-change: transform;
+}
+
+/* Non-stop continuous animations - never pause on hover or touch */
+.animate-scroll-left,
+.animate-scroll-right,
+.animate-scroll-slow {
+  animation-play-state: running !important;
+}
+
+/* Apple subtle pulse glow */
+@keyframes pulse-subtle {
+  0%, 100% {
+    box-shadow: 0 4px 20px -2px rgba(225, 29, 72, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 28px -2px rgba(225, 29, 72, 0.4);
+    transform: scale(1.01);
+  }
+}
+
+.animate-cta-subtle {
+  animation: pulse-subtle 3.5s ease-in-out infinite;
+}
+
+/* Float */
+@keyframes subtle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: subtle-float 4s ease-in-out infinite;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
