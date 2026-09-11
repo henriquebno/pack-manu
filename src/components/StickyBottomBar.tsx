@@ -37,7 +37,7 @@ export const StickyBottomBar: React.FC = () => {
               </span>
             </p>
             <p className="text-[11px] text-neutral-500 font-sans-body">
-              A partir de <strong className="text-rose-600 font-bold">R$ 19,90</strong> no Pix ou Cartão
+              A partir de <strong className="text-rose-600 font-bold">R$ 9,99</strong> no Pix ou Cartão
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ export const StickyBottomBar: React.FC = () => {
         <div className="sm:hidden text-left pl-1">
           <span className="text-[10px] text-neutral-400 line-through font-sans-body">De R$ 67,90</span>
           <p className="text-xs font-bold text-[#1D1D1F] leading-tight font-heading">
-            A partir de <span className="text-rose-600">R$ 19,90</span>
+            A partir de <span className="text-rose-600">R$ 9,99</span>
           </p>
         </div>
 

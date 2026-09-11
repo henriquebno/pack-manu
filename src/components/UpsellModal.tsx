@@ -34,7 +34,7 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
         className="relative bg-white rounded-3xl max-w-sm sm:max-w-md w-full p-5 sm:p-6 shadow-2xl border border-rose-100 my-auto text-center overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Top Close Button (X) to allow closing and choosing the R$ 37,90 offer */}
+        {/* Top Close Button (X) to allow closing and choosing the R$ 27,90 offer */}
         <button
           id="close-upsell-modal-btn"
           onClick={onClose}
@@ -51,7 +51,7 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
 
         {/* Introduction text */}
         <p className="text-xs sm:text-sm text-neutral-700 font-sans-body mt-1">
-          Você escolheu o <strong className="text-[#1D1D1F]">Pack Essencial por R$ 19,90</strong>.
+          Você escolheu o <strong className="text-[#1D1D1F]">Pack Essencial por R$ 9,99</strong>.
         </p>
         <p className="text-xs text-neutral-500 font-sans-body mt-1">
           Mas antes de continuar, queremos liberar uma oportunidade única:
@@ -62,7 +62,7 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
           <h3 className="text-base sm:text-lg font-bold font-heading uppercase text-[#1D1D1F] tracking-wide leading-snug">
             Leve o <span className="text-rose-600">PACK COMPLETO</span> com todos os bônus por apenas{' '}
             <span className="text-emerald-700 bg-emerald-100/70 border border-emerald-300/80 px-1.5 py-0.5 rounded-md font-bold inline-block">
-              +R$ 8
+              R$ 19,90
             </span>
           </h3>
 
@@ -74,24 +74,24 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
           {/* Pricing Highlight */}
           <div className="mt-3 pt-2.5 border-t border-neutral-200/60 flex items-center justify-center gap-2">
             <span className="line-through text-neutral-400 text-xs sm:text-sm font-semibold">
-              R$ 37,90
+              R$ 27,90
             </span>
             <span className="text-[10px] sm:text-xs font-bold text-rose-600 uppercase tracking-wider font-heading">
               HOJE POR
             </span>
             <span className="text-2xl sm:text-3xl font-bold font-heading text-[#1D1D1F] tracking-tight">
-              R$ 27,90
+              R$ 19,90
             </span>
           </div>
 
           <p className="text-[11px] sm:text-xs text-emerald-800 font-semibold mt-1 font-sans-body">
-            Você paga apenas R$ 8 a mais e leva o pacote completo.
+            Aproveite esse desconto exclusivo de R$ 27,90 por apenas R$ 19,90.
           </p>
         </div>
 
         {/* Action Buttons */}
         <div className="mt-4 flex flex-col items-center">
-          {/* Main Focused Button (R$ 27,90) */}
+          {/* Main Focused Button (R$ 19,90) */}
           <a
             id="upsell-accept-btn"
             href={CHECKOUT_LINKS.completoOferta27}
@@ -100,10 +100,10 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
             className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-bold text-xs sm:text-sm py-3 px-3 sm:px-4 rounded-full shadow-lg shadow-rose-500/25 transition-all flex items-center justify-center gap-2 uppercase tracking-wide font-heading text-center cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 shrink-0 text-amber-300 fill-amber-300" />
-            <span className="leading-tight">SIM! QUERO APROVEITAR E LEVAR O COMPLETO POR R$ 27,90</span>
+            <span className="leading-tight">SIM! QUERO APROVEITAR E LEVAR O COMPLETO POR R$ 19,90</span>
           </a>
 
-          {/* Discreet Secondary Option (R$ 19,90) */}
+          {/* Discreet Secondary Option (R$ 9,99) */}
           <a
             id="upsell-decline-btn"
             href={CHECKOUT_LINKS.essencial}
@@ -111,7 +111,7 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
             rel="noopener noreferrer"
             className="mt-3 text-[11px] sm:text-xs text-neutral-400 hover:text-neutral-700 transition-colors underline underline-offset-2 font-sans-body text-center block px-2 leading-relaxed cursor-pointer"
           >
-            Não, obrigada. Quero continuar apenas com o Pack Essencial por R$ 19,90.
+            Não, obrigada. Quero continuar apenas com o Pack Essencial por R$ 9,99.
           </a>
         </div>
 

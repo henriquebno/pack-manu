@@ -61,7 +61,7 @@ export default function App() {
         {/* 10. Inspirations Gallery (Interactive Story Showcase) */}
         <InspirationsGallery />
 
-        {/* 11. Pricing Plans (Pack Essencial R$ 19,90 & Pack Completo R$ 37,90) */}
+        {/* 11. Pricing Plans (Pack Essencial R$ 9,99 & Pack Completo R$ 27,90) */}
         <PricingSection />
 
         {/* 12. 7-Day Unconditional Guarantee */}
