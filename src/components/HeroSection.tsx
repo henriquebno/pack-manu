@@ -35,7 +35,7 @@ export const HeroSection: React.FC = () => {
 
           {/* Subtitle */}
           <p className="mt-3.5 text-xs sm:text-sm md:text-base text-neutral-600 max-w-xl font-sans-body leading-relaxed">
-            Tenha acesso a mais de <strong className="font-semibold text-neutral-900">+15.000 figurinhas e elementos prontos</strong> para criar Stories incríveis em poucos segundos no seu celular.
+            Tenha acesso ao meu pack com milhares de figurinhas para academia, trabalho, estudos, skincare, viagens, fé, rotina e muito mais.
           </p>
 
           {/* CTA Button & Trust Links */}

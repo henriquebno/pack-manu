@@ -36,7 +36,7 @@ export const SalesNotification: React.FC = () => {
     let pauseTimeout: NodeJS.Timeout;
     let initialTimeout: NodeJS.Timeout;
 
-    // Helper: shows notification for 4.5s, then hides it and waits 10 seconds between notifications
+    // Helper: shows notification for 4.5s, then hides it and waits 15 seconds between notifications
     const triggerCycle = () => {
       setIsVisible(true);
 
@@ -44,18 +44,18 @@ export const SalesNotification: React.FC = () => {
       displayTimeout = setTimeout(() => {
         setIsVisible(false);
 
-        // Wait 10 seconds between notifications before showing the next one
+        // Wait 15 seconds between notifications before showing the next one
         pauseTimeout = setTimeout(() => {
           setCurrentIndex((prev) => (prev + 1) % NOTIFICATION_LIST.length);
           triggerCycle();
-        }, 10000);
+        }, 15000);
       }, 4500);
     };
 
-    // First notification appears after 5 seconds on page
+    // First notification appears after 6 seconds on page
     initialTimeout = setTimeout(() => {
       triggerCycle();
-    }, 5000);
+    }, 6000);
 
     return () => {
       clearTimeout(initialTimeout);
@@ -79,7 +79,7 @@ export const SalesNotification: React.FC = () => {
         isVisible
           ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
           : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
-      } bottom-20 sm:bottom-6 left-3 sm:left-6 max-w-[320px] sm:max-w-sm`}
+      } bottom-4 sm:bottom-6 left-3 sm:left-6 max-w-[320px] sm:max-w-sm`}
     >
       <div className="relative bg-white/95 backdrop-blur-md border border-neutral-200/80 rounded-2xl shadow-xl p-3 sm:p-3.5 flex items-center gap-3 text-left">
         {/* Close Button */}

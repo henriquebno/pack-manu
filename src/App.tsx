@@ -6,10 +6,10 @@
 import React, { useState } from 'react';
 import { TopBanner } from './components/TopBanner';
 import { HeroSection } from './components/HeroSection';
+import { NichesSection } from './components/NichesSection';
 import { PainPointsSection } from './components/PainPointsSection';
 import { BeforeAfterSection } from './components/BeforeAfterSection';
 import { FeaturesLibrarySection } from './components/FeaturesLibrarySection';
-import { NichesSection } from './components/NichesSection';
 import { TargetAudienceSection } from './components/TargetAudienceSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { BonusesSection } from './components/BonusesSection';
@@ -21,7 +21,6 @@ import { RecapSection } from './components/RecapSection';
 import { FAQSection } from './components/FAQSection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { Footer } from './components/Footer';
-import { StickyBottomBar } from './components/StickyBottomBar';
 import { LegalModal } from './components/LegalModal';
 import { SalesNotification } from './components/SalesNotification';
 
@@ -37,17 +36,17 @@ export default function App() {
         {/* 2. Hero Section with Mockup */}
         <HeroSection />
 
-        {/* 3. Pain Points / Identification */}
+        {/* 3. Niches & Daily Moments (Directly below Hero Section) */}
+        <NichesSection />
+
+        {/* 4. Pain Points / Identification */}
         <PainPointsSection />
 
-        {/* 4. Before & After Interactive Transformations */}
+        {/* 5. Before & After Interactive Transformations */}
         <BeforeAfterSection />
 
-        {/* 5. What's Inside & Stickers Mosaic (+15.000 elements) */}
+        {/* 6. What's Inside & Stickers Mosaic (+15.000 elements) */}
         <FeaturesLibrarySection />
-
-        {/* 6. Niches & Daily Moments */}
-        <NichesSection />
 
         {/* 7. Who is this for? Checklist */}
         <TargetAudienceSection />
@@ -83,13 +82,10 @@ export default function App() {
       {/* 17. Footer */}
       <Footer onOpenLegal={(type) => setLegalModalType(type)} />
 
-      {/* 18. Sticky Floating CTA Bar */}
-      <StickyBottomBar />
-
-      {/* 19. Social Proof Sales Notification (8s interval, max 10 people) */}
+      {/* 18. Social Proof Sales Notification (8s interval, max 10 people) */}
       <SalesNotification />
 
-      {/* 20. Legal Modal (Terms / Privacy) */}
+      {/* 19. Legal Modal (Terms / Privacy) */}
       <LegalModal
         isOpen={legalModalType !== null}
         type={legalModalType}
