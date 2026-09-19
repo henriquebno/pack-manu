@@ -81,10 +81,14 @@ export const HeroSection: React.FC = () => {
           <div className="relative mt-10 sm:mt-12 w-full max-w-3xl mx-auto">
             <div className="relative mx-auto rounded-3xl p-2 bg-white/70 shadow-xl shadow-black/5 border border-black/[0.04]">
               <img
-                src="/images/hero-mockup-DsMjv5DB.png"
+                src="/images/hero-mockup-DsMjv5DB.webp"
                 alt="Pack Manu Stories Mockup em smartphones"
                 className="w-full h-auto rounded-2xl object-cover"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={1024}
+                height={1024}
               />
 
               {/* Floating aesthetic feature tags */}

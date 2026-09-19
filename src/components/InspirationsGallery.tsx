@@ -4,31 +4,31 @@ import { SectionBadge, UnderlineStroke } from './TitleAccents';
 
 // Full collection matching the original site's rich stories array
 const ALL_STORIES_CAROUSEL = [
-  '/images/story-1-C665SIao.jpg',
-  '/images/after-fitness-DC_K6b53.jpg',
-  '/images/story-11-_8e1j99H.jpg',
-  '/images/story-2-B94qPte1.jpg',
-  '/images/after-fruit-D1an2U3e.jpg',
-  '/images/story-12-BH_IGoOa.jpg',
-  '/images/story-3-CCcShyHH.jpg',
-  '/images/after-gym-Cdqt_dYD.jpg',
-  '/images/story-13-B676D-DK.jpg',
-  '/images/story-4-CNnDSkV9.jpg',
-  '/images/after-lingerie-BwfVXGKj.jpg',
-  '/images/story-14-_BhRRc8t.jpg',
-  '/images/story-5-DN4tThc0.jpg',
-  '/images/after-netflix-CWmTPNHb.jpg',
-  '/images/story-15-CDB78I5r.jpg',
-  '/images/story-6-BqgU9-pI.jpg',
-  '/images/after-pizza-DGUIwc9I.jpg',
-  '/images/story-16-CD4pJhPo.jpg',
-  '/images/story-7-BNw7-3Kq.jpg',
-  '/images/after-image-Bwm8Fojg.png',
-  '/images/story-17-D25O698I.jpg',
-  '/images/story-8-D6MxRHTs.jpg',
-  '/images/story-9-Cqu-C6DV.jpg',
-  '/images/story-18-CKJXJhhx.jpg',
-  '/images/story-10-B3zch44O.jpg',
+  '/images/story-1-C665SIao.webp',
+  '/images/after-fitness-DC_K6b53.webp',
+  '/images/story-11-_8e1j99H.webp',
+  '/images/story-2-B94qPte1.webp',
+  '/images/after-fruit-D1an2U3e.webp',
+  '/images/story-12-BH_IGoOa.webp',
+  '/images/story-3-CCcShyHH.webp',
+  '/images/after-gym-Cdqt_dYD.webp',
+  '/images/story-13-B676D-DK.webp',
+  '/images/story-4-CNnDSkV9.webp',
+  '/images/after-lingerie-BwfVXGKj.webp',
+  '/images/story-14-_BhRRc8t.webp',
+  '/images/story-5-DN4tThc0.webp',
+  '/images/after-netflix-CWmTPNHb.webp',
+  '/images/story-15-CDB78I5r.webp',
+  '/images/story-6-BqgU9-pI.webp',
+  '/images/after-pizza-DGUIwc9I.webp',
+  '/images/story-16-CD4pJhPo.webp',
+  '/images/story-7-BNw7-3Kq.webp',
+  '/images/after-image-Bwm8Fojg.webp',
+  '/images/story-17-D25O698I.webp',
+  '/images/story-8-D6MxRHTs.webp',
+  '/images/story-9-Cqu-C6DV.webp',
+  '/images/story-18-CKJXJhhx.webp',
+  '/images/story-10-B3zch44O.webp',
 ];
 
 export const InspirationsGallery: React.FC = () => {
@@ -84,7 +84,7 @@ export const InspirationsGallery: React.FC = () => {
         {/* Row 1: Leftward infinite scroll */}
         <div className="w-full overflow-hidden">
           <div className="flex gap-3 sm:gap-4 animate-scroll-left w-max px-2">
-            {[...row1, ...row1, ...row1].map((imgUrl, idx) => (
+            {[...row1, ...row1].map((imgUrl, idx) => (
               <div
                 key={`story-r1-${idx}`}
                 className="w-36 sm:w-44 md:w-52 aspect-[9/16] rounded-2xl overflow-hidden bg-neutral-100 border border-black/[0.06] shadow-sm shrink-0"
@@ -94,6 +94,9 @@ export const InspirationsGallery: React.FC = () => {
                   alt={`Inspiração Story ${idx + 1}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width={208}
+                  height={370}
                   draggable={false}
                 />
               </div>
@@ -104,7 +107,7 @@ export const InspirationsGallery: React.FC = () => {
         {/* Row 2: Rightward infinite scroll */}
         <div className="w-full overflow-hidden">
           <div className="flex gap-3 sm:gap-4 animate-scroll-right w-max px-2">
-            {[...row2, ...row2, ...row2].map((imgUrl, idx) => (
+            {[...row2, ...row2].map((imgUrl, idx) => (
               <div
                 key={`story-r2-${idx}`}
                 className="w-36 sm:w-44 md:w-52 aspect-[9/16] rounded-2xl overflow-hidden bg-neutral-100 border border-black/[0.06] shadow-sm shrink-0"
@@ -114,6 +117,9 @@ export const InspirationsGallery: React.FC = () => {
                   alt={`Inspiração Story ${idx + 1}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width={208}
+                  height={370}
                   draggable={false}
                 />
               </div>

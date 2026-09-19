@@ -6,8 +6,8 @@ import { SectionBadge, UnderlineStroke } from './TitleAccents';
 export const BeforeAfterSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
 
-  // Triple items for seamless infinite scroll
-  const carouselItems = [...BEFORE_AFTER_DATA, ...BEFORE_AFTER_DATA, ...BEFORE_AFTER_DATA];
+  // Double items for seamless infinite scroll
+  const carouselItems = [...BEFORE_AFTER_DATA, ...BEFORE_AFTER_DATA];
 
   return (
     <section id="transformacao" className="py-14 md:py-24 bg-[#FAF9F6] border-t border-neutral-200/60 overflow-hidden relative">
@@ -57,6 +57,9 @@ export const BeforeAfterSection: React.FC = () => {
                     alt={`${item.label} antes`}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    decoding="async"
+                    width={160}
+                    height={110}
                     draggable={false}
                   />
                   <span className="absolute top-1.5 left-1.5 text-[9px] font-bold text-neutral-700 bg-white/90 backdrop-blur-2xs px-1.5 py-0.5 rounded shadow-2xs font-heading">
@@ -71,6 +74,9 @@ export const BeforeAfterSection: React.FC = () => {
                     alt={`${item.label} depois`}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    decoding="async"
+                    width={160}
+                    height={110}
                     draggable={false}
                   />
                   <span className="absolute top-1.5 left-1.5 text-[9px] font-bold text-white bg-rose-600/90 backdrop-blur-2xs px-1.5 py-0.5 rounded shadow-2xs flex items-center gap-0.5 font-heading">
@@ -124,6 +130,10 @@ export const BeforeAfterSection: React.FC = () => {
                   src={BEFORE_AFTER_DATA[activeTab].beforeImg}
                   alt="Antes"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={340}
+                  height={600}
                 />
               </div>
               <p className="text-[11px] text-neutral-500 text-center mt-2 font-sans-body">
@@ -144,6 +154,10 @@ export const BeforeAfterSection: React.FC = () => {
                   src={BEFORE_AFTER_DATA[activeTab].afterImg}
                   alt="Depois"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={340}
+                  height={600}
                 />
               </div>
               <p className="text-[11px] text-rose-700 font-semibold text-center mt-2 font-sans-body">

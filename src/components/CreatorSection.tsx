@@ -11,11 +11,14 @@ export const CreatorSection: React.FC = () => {
             <div className="w-44 h-44 sm:w-52 sm:h-52 aspect-square rounded-2xl overflow-hidden border border-neutral-200/90 shadow-sm relative bg-neutral-100">
               <img
                 id="creator-manu-photo"
-                src="/images/manu-creator.jpg"
+                src="/images/manu-creator.webp"
                 alt="Manu - Criadora do Pack Manu Stories"
                 className="w-full h-full object-cover object-top"
                 referrerPolicy="no-referrer"
                 loading="lazy"
+                decoding="async"
+                width={208}
+                height={208}
               />
             </div>
           </div>

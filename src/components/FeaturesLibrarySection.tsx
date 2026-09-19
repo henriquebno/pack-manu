@@ -3,27 +3,27 @@ import { Sparkles, Image, Check, Layers, Heart, Infinity as InfinityIcon, Zap } 
 import { SectionBadge, UnderlineStroke } from './TitleAccents';
 
 const ROW1_STICKERS = [
-  '/images/sticker-1-CUhZcYaj.png',
-  '/images/sticker-4-Bz4LTYqM.png',
-  '/images/sticker-11-BliCkY5X.png',
-  '/images/sticker-13-BnuPCZTi.png',
-  '/images/sticker-15-CKHRMzGh.png',
-  '/images/sticker-16-D0e3fNl6.png',
-  '/images/sticker-12-C68Rt-ns.png',
-  '/images/sticker-19-DSx-dlyZ.png',
-  '/images/sticker-5-DjomY0fN.png',
+  '/images/sticker-1-CUhZcYaj.webp',
+  '/images/sticker-4-Bz4LTYqM.webp',
+  '/images/sticker-11-BliCkY5X.webp',
+  '/images/sticker-13-BnuPCZTi.webp',
+  '/images/sticker-15-CKHRMzGh.webp',
+  '/images/sticker-16-D0e3fNl6.webp',
+  '/images/sticker-12-C68Rt-ns.webp',
+  '/images/sticker-19-DSx-dlyZ.webp',
+  '/images/sticker-5-DjomY0fN.webp',
 ];
 
 const ROW2_STICKERS = [
-  '/images/sticker-6-BPiw3Ak_.png',
-  '/images/sticker-10-DfvINmaU.png',
-  '/images/sticker-14-TzpsTBd9.png',
-  '/images/sticker-17-JjG14PVt.png',
-  '/images/sticker-8-BFD-NdQg.png',
-  '/images/sticker-18-BI5dxiw-.png',
-  '/images/sticker-9-SLEOzQQo.png',
-  '/images/sticker-2-CtHK1tkb.png',
-  '/images/sticker-3-CYa_b6Hg.png',
+  '/images/sticker-6-BPiw3Ak_.webp',
+  '/images/sticker-10-DfvINmaU.webp',
+  '/images/sticker-14-TzpsTBd9.webp',
+  '/images/sticker-17-JjG14PVt.webp',
+  '/images/sticker-8-BFD-NdQg.webp',
+  '/images/sticker-18-BI5dxiw-.webp',
+  '/images/sticker-9-SLEOzQQo.webp',
+  '/images/sticker-2-CtHK1tkb.webp',
+  '/images/sticker-3-CYa_b6Hg.webp',
 ];
 
 export const FeaturesLibrarySection: React.FC = () => {
@@ -119,7 +119,7 @@ export const FeaturesLibrarySection: React.FC = () => {
             {/* Row 1: Left */}
             <div className="w-full overflow-hidden">
               <div className="flex gap-4 sm:gap-6 animate-scroll-left w-max">
-                {[...ROW1_STICKERS, ...ROW1_STICKERS, ...ROW1_STICKERS, ...ROW1_STICKERS].map((img, idx) => (
+                {[...ROW1_STICKERS, ...ROW1_STICKERS].map((img, idx) => (
                   <div
                     key={`r1-${idx}`}
                     className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 bg-white/[0.04] rounded-2xl border border-white/10 p-3 sm:p-4 flex items-center justify-center shrink-0 backdrop-blur-xs"
@@ -129,6 +129,9 @@ export const FeaturesLibrarySection: React.FC = () => {
                       alt={`Figurinha aesthetic ${idx + 1}`}
                       className="max-w-full max-h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                       loading="lazy"
+                      decoding="async"
+                      width={128}
+                      height={128}
                       draggable={false}
                     />
                   </div>
@@ -139,7 +142,7 @@ export const FeaturesLibrarySection: React.FC = () => {
             {/* Row 2: Right */}
             <div className="w-full overflow-hidden">
               <div className="flex gap-4 sm:gap-6 animate-scroll-right w-max">
-                {[...ROW2_STICKERS, ...ROW2_STICKERS, ...ROW2_STICKERS, ...ROW2_STICKERS].map((img, idx) => (
+                {[...ROW2_STICKERS, ...ROW2_STICKERS].map((img, idx) => (
                   <div
                     key={`r2-${idx}`}
                     className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 bg-white/[0.04] rounded-2xl border border-white/10 p-3 sm:p-4 flex items-center justify-center shrink-0 backdrop-blur-xs"
@@ -149,6 +152,9 @@ export const FeaturesLibrarySection: React.FC = () => {
                       alt={`Figurinha aesthetic ${idx + 1}`}
                       className="max-w-full max-h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                       loading="lazy"
+                      decoding="async"
+                      width={128}
+                      height={128}
                       draggable={false}
                     />
                   </div>
