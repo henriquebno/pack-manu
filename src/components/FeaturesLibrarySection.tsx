@@ -182,7 +182,7 @@ export const FeaturesLibrarySection: React.FC = () => {
               <Sparkles className="w-4 h-4" />
             </div>
             <p className="font-bold text-xs sm:text-sm text-[#1D1D1F] font-heading">Fundo Transparente</p>
-            <p className="text-[11px] text-neutral-500 mt-0.5 font-sans-body">PNG de altíssima qualidade</p>
+            <p className="text-[11px] text-neutral-600 mt-0.5 font-sans-body">PNG de altíssima qualidade</p>
           </div>
 
           <div className="bg-white rounded-2xl p-4 border border-neutral-200/70 text-center shadow-xs">
@@ -190,7 +190,7 @@ export const FeaturesLibrarySection: React.FC = () => {
               <Image className="w-4 h-4" />
             </div>
             <p className="font-bold text-xs sm:text-sm text-[#1D1D1F] font-heading">Alta Resolução</p>
-            <p className="text-[11px] text-neutral-500 mt-0.5 font-sans-body">Nítido em qualquer tamanho</p>
+            <p className="text-[11px] text-neutral-600 mt-0.5 font-sans-body">Nítido em qualquer tamanho</p>
           </div>
 
           <div className="bg-white rounded-2xl p-4 border border-neutral-200/70 text-center shadow-xs">
@@ -198,7 +198,7 @@ export const FeaturesLibrarySection: React.FC = () => {
               <InfinityIcon className="w-4 h-4" />
             </div>
             <p className="font-bold text-xs sm:text-sm text-[#1D1D1F] font-heading">Uso Ilimitado</p>
-            <p className="text-[11px] text-neutral-500 mt-0.5 font-sans-body">Use quantas vezes quiser</p>
+            <p className="text-[11px] text-neutral-600 mt-0.5 font-sans-body">Use quantas vezes quiser</p>
           </div>
 
           <div className="bg-white rounded-2xl p-4 border border-neutral-200/70 text-center shadow-xs">
@@ -206,7 +206,7 @@ export const FeaturesLibrarySection: React.FC = () => {
               <Zap className="w-4 h-4" />
             </div>
             <p className="font-bold text-xs sm:text-sm text-[#1D1D1F] font-heading">Acesso Imediato</p>
-            <p className="text-[11px] text-neutral-500 mt-0.5 font-sans-body">Direto no seu e-mail</p>
+            <p className="text-[11px] text-neutral-600 mt-0.5 font-sans-body">Direto no seu e-mail</p>
           </div>
         </div>
 
@@ -226,10 +226,10 @@ export const FeaturesLibrarySection: React.FC = () => {
                     {card.count}
                   </span>
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm text-[#1D1D1F] font-heading">
+                <h3 className="font-bold text-xs sm:text-sm text-[#1D1D1F] font-heading">
                   {card.title}
-                </h4>
-                <p className="text-[11px] text-neutral-500 mt-1 font-sans-body leading-relaxed">
+                </h3>
+                <p className="text-[11px] text-neutral-600 mt-1 font-sans-body leading-relaxed">
                   {card.desc}
                 </p>
               </div>

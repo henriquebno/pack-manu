@@ -44,13 +44,13 @@ export const InspirationsGallery: React.FC = () => {
         {/* Narrative Box */}
         <div className="mb-12 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-xs max-w-2xl mx-auto text-center">
           <span className="text-2xl block mb-2">✨</span>
-          <h3 className="text-xl sm:text-2xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-snug">
+          <p className="text-xl sm:text-2xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-snug">
             Imagine nunca mais abrir o Instagram sem saber como deixar seu Story{' '}
             <span className="relative inline-block text-rose-600">
               <span className="relative z-10">bonito</span>
               <UnderlineStroke className="-bottom-1" color="#e11d48" />
             </span>
-          </h3>
+          </p>
           <div className="mt-4 space-y-2 text-xs sm:text-sm text-neutral-600 font-sans-body">
             <p>☕ <strong>Tirou foto do café?</strong> Tem figurinhas prontas para compor.</p>
             <p>💪 <strong>Foi treinar?</strong> Tem elementos de foco e motivação.</p>

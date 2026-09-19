@@ -51,7 +51,7 @@ export const HeroSection: React.FC = () => {
 
             <a
               href="#transformacao"
-              className="mt-2.5 text-[11px] text-neutral-500 hover:text-neutral-900 transition-colors font-sans-body"
+              className="mt-2.5 text-[11px] text-neutral-600 hover:text-neutral-900 transition-colors font-sans-body"
             >
               Ver transformações antes e depois ↓
             </a>
@@ -80,16 +80,19 @@ export const HeroSection: React.FC = () => {
           {/* Hero Visual Mockup */}
           <div className="relative mt-10 sm:mt-12 w-full max-w-3xl mx-auto">
             <div className="relative mx-auto rounded-3xl p-2 bg-white/70 shadow-xl shadow-black/5 border border-black/[0.04]">
-              <img
-                src="/images/hero-mockup-DsMjv5DB.webp"
-                alt="Pack Manu Stories Mockup em smartphones"
-                className="w-full h-auto rounded-2xl object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                width={1024}
-                height={1024}
-              />
+              <picture>
+                <source media="(max-width: 640px)" srcSet="/images/hero-mockup-mobile.webp" type="image/webp" width={640} height={640} />
+                <img
+                  src="/images/hero-mockup-DsMjv5DB.webp"
+                  alt="Pack Manu Stories Mockup em smartphones"
+                  className="w-full h-auto rounded-2xl object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width={1024}
+                  height={1024}
+                />
+              </picture>
 
               {/* Floating aesthetic feature tags */}
               <div className="absolute -bottom-3 left-3 sm:left-6 bg-white/95 backdrop-blur-md border border-neutral-200/80 rounded-2xl py-1.5 px-3 shadow-md flex items-center gap-2 animate-float">
@@ -98,7 +101,7 @@ export const HeroSection: React.FC = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-[10px] font-bold text-neutral-900 leading-tight font-heading">Fundo Transparente</p>
-                  <p className="text-[9px] text-neutral-500 font-sans-body">Copie e cole direto no Story</p>
+                  <p className="text-[9px] text-neutral-600 font-sans-body">Copie e cole direto no Story</p>
                 </div>
               </div>
 
@@ -108,7 +111,7 @@ export const HeroSection: React.FC = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-[10px] font-bold text-neutral-900 leading-tight font-heading">Pronto em 30 segundos</p>
-                  <p className="text-[9px] text-neutral-500 font-sans-body">Pelo próprio celular</p>
+                  <p className="text-[9px] text-neutral-600 font-sans-body">Pelo próprio celular</p>
                 </div>
               </div>
             </div>

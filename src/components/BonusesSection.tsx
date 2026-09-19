@@ -51,7 +51,7 @@ export const BonusesSection: React.FC = () => {
                   BÔNUS #{bonus.id}
                 </span>
                 <div className="flex items-center gap-1.5 text-xs">
-                  <span className="line-through text-neutral-400 text-[11px]">{bonus.originalPrice}</span>
+                  <span className="line-through text-neutral-600 text-[11px]">{bonus.originalPrice}</span>
                   <span className="text-emerald-700 bg-emerald-50 border border-emerald-200/60 font-bold px-2 py-0.5 rounded-md text-[10px] font-heading">
                     HOJE: GRÁTIS
                   </span>

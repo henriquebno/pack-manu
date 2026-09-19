@@ -121,7 +121,7 @@ export const BeforeAfterSection: React.FC = () => {
             {/* Before */}
             <div className="flex flex-col">
               <div className="flex items-center justify-between mb-2 px-1">
-                <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider font-heading">
+                <span className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider font-heading">
                   ANTES (SEM ELEMENTOS)
                 </span>
               </div>
@@ -136,7 +136,7 @@ export const BeforeAfterSection: React.FC = () => {
                   height={600}
                 />
               </div>
-              <p className="text-[11px] text-neutral-500 text-center mt-2 font-sans-body">
+              <p className="text-[11px] text-neutral-600 text-center mt-2 font-sans-body">
                 {BEFORE_AFTER_DATA[activeTab].beforeCaption}
               </p>
             </div>

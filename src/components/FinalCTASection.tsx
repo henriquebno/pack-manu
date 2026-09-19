@@ -37,7 +37,7 @@ export const FinalCTASection: React.FC = () => {
             <ArrowRight className="w-4 h-4" />
           </a>
 
-          <div className="mt-5 flex items-center justify-center gap-3 text-[11px] text-neutral-400 flex-wrap font-sans-body">
+          <div className="mt-5 flex items-center justify-center gap-3 text-[11px] text-neutral-300 flex-wrap font-sans-body">
             <span className="flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               Pagamento 100% seguro

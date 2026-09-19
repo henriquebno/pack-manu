@@ -73,7 +73,7 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
 
           {/* Pricing Highlight */}
           <div className="mt-3 pt-2.5 border-t border-neutral-200/60 flex items-center justify-center gap-2">
-            <span className="line-through text-neutral-400 text-xs sm:text-sm font-semibold">
+            <span className="line-through text-neutral-600 text-xs sm:text-sm font-semibold">
               R$ 27,90
             </span>
             <span className="text-[10px] sm:text-xs font-bold text-rose-600 uppercase tracking-wider font-heading">
@@ -109,14 +109,14 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
             href={CHECKOUT_LINKS.essencial}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 text-[11px] sm:text-xs text-neutral-400 hover:text-neutral-700 transition-colors underline underline-offset-2 font-sans-body text-center block px-2 leading-relaxed cursor-pointer"
+            className="mt-3 text-[11px] sm:text-xs text-neutral-600 hover:text-neutral-800 transition-colors underline underline-offset-2 font-sans-body text-center block px-2 leading-relaxed cursor-pointer"
           >
             Não, obrigada. Quero continuar apenas com o Pack Essencial por R$ 9,99.
           </a>
         </div>
 
         {/* Micro Trust Indicators */}
-        <div className="mt-3.5 pt-2.5 border-t border-neutral-100 flex items-center justify-center gap-3 text-[10px] text-neutral-400 font-sans-body">
+        <div className="mt-3.5 pt-2.5 border-t border-neutral-100 flex items-center justify-center gap-3 text-[10px] text-neutral-600 font-sans-body">
           <span className="flex items-center gap-1">
             <ShieldCheck className="w-3 h-3 text-emerald-600" />
             Compra 100% segura

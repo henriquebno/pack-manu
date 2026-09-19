@@ -76,34 +76,34 @@
   animation-play-state: running !important;
 }
 
-/* Apple subtle pulse glow */
+/* Composited GPU animations using transform only - avoids layout thrashing and paint loops */
 @keyframes pulse-subtle {
   0%, 100% {
-    box-shadow: 0 4px 20px -2px rgba(225, 29, 72, 0.25);
-    transform: scale(1);
+    transform: scale3d(1, 1, 1);
   }
   50% {
-    box-shadow: 0 8px 28px -2px rgba(225, 29, 72, 0.4);
-    transform: scale(1.01);
+    transform: scale3d(1.015, 1.015, 1);
   }
 }
 
 .animate-cta-subtle {
   animation: pulse-subtle 3.5s ease-in-out infinite;
+  will-change: transform;
 }
 
-/* Float */
+/* Float with translate3d for GPU compositing */
 @keyframes subtle-float {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translate3d(0, -5px, 0);
   }
 }
 
 .animate-float {
   animation: subtle-float 4s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Hide scrollbar */

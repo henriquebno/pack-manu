@@ -30,7 +30,7 @@ export const TestimonialsSection: React.FC = () => {
               <Users className="w-4 h-4" />
             </div>
             <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">+28.000</p>
-            <p className="text-[11px] text-neutral-500 font-sans-body">Alunas ativas</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Alunas ativas</p>
           </div>
 
           <div className="border-r border-neutral-100 last:border-0 pr-2">
@@ -38,7 +38,7 @@ export const TestimonialsSection: React.FC = () => {
               <Star className="w-4 h-4 fill-amber-400" />
             </div>
             <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">4.9 / 5.0</p>
-            <p className="text-[11px] text-neutral-500 font-sans-body">Avaliação média</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Avaliação média</p>
           </div>
 
           <div className="border-r border-neutral-100 last:border-0 pr-2">
@@ -46,7 +46,7 @@ export const TestimonialsSection: React.FC = () => {
               <Sparkles className="w-4 h-4" />
             </div>
             <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">+15.000</p>
-            <p className="text-[11px] text-neutral-500 font-sans-body">Elementos inclusos</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Elementos inclusos</p>
           </div>
 
           <div>
@@ -54,7 +54,7 @@ export const TestimonialsSection: React.FC = () => {
               <CheckCircle className="w-4 h-4" />
             </div>
             <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">100%</p>
-            <p className="text-[11px] text-neutral-500 font-sans-body">Garantia total</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Garantia total</p>
           </div>
         </div>
 

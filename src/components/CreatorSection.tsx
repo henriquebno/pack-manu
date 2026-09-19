@@ -29,7 +29,7 @@ export const CreatorSection: React.FC = () => {
               QUEM ESTÁ POR TRÁS
             </span>
 
-            <h3 className="text-2xl sm:text-3xl text-[#1D1D1F] font-heading uppercase tracking-wide mb-4 flex items-center justify-center sm:justify-start gap-1.5 flex-wrap">
+            <h2 className="text-2xl sm:text-3xl text-[#1D1D1F] font-heading uppercase tracking-wide mb-4 flex items-center justify-center sm:justify-start gap-1.5 flex-wrap">
               <span>Oi, eu sou a Manu!</span>
               {/* Coração vermelho com apenas o traço feito à mão com caneta */}
               <svg
@@ -47,7 +47,7 @@ export const CreatorSection: React.FC = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-            </h3>
+            </h2>
 
             <div className="space-y-3.5 text-xs sm:text-[14px] text-neutral-600 leading-relaxed font-sans-body">
               <p>

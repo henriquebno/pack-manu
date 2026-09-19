@@ -55,7 +55,7 @@ export const PricingSection: React.FC = () => {
 
               {/* Price comparison */}
               <div className="mb-3.5 bg-rose-50/60 rounded-2xl p-3 border border-rose-100">
-                <p className="text-[11px] text-neutral-500 font-medium line-through">De R$ 97,90 por apenas:</p>
+                <p className="text-[11px] text-neutral-600 font-medium line-through">De R$ 97,90 por apenas:</p>
                 <div className="flex items-baseline gap-1 mt-0.5">
                   <span className="text-sm font-semibold text-rose-600 font-heading">R$</span>
                   <span className="text-4xl sm:text-5xl font-bold text-rose-600 font-heading tracking-tight">27,90</span>
@@ -117,7 +117,7 @@ export const PricingSection: React.FC = () => {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
 
-              <div className="mt-3 flex items-center justify-center gap-3 text-[10px] text-neutral-500 font-sans-body">
+              <div className="mt-3 flex items-center justify-center gap-3 text-[10px] text-neutral-600 font-sans-body">
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3 text-emerald-600" />
                   Compra 100% segura
@@ -134,32 +134,31 @@ export const PricingSection: React.FC = () => {
                 </span>
               </div>
             </div>
-
           </div>
 
           {/* PLAN 2: PACK ESSENCIAL - R$ 9,99 (SECOND) */}
           <div className="md:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-sm flex flex-col justify-between relative order-2">
             <div>
               <div className="mb-3.5 pb-3 border-b border-neutral-100">
-                <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider font-heading">
+                <span className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider font-heading">
                   Opção Básica
                 </span>
                 <h3 className="text-2xl sm:text-3xl text-[#1D1D1F] font-heading uppercase tracking-wide mt-1">
                   Pack Essencial
                 </h3>
-                <p className="text-xs text-neutral-500 mt-0.5 font-sans-body">
+                <p className="text-xs text-neutral-600 mt-0.5 font-sans-body">
                   Ideal para quem quer apenas as figurinhas para começar.
                 </p>
               </div>
 
               {/* Price */}
               <div className="mb-3.5">
-                <p className="text-[11px] text-neutral-400 font-medium">Pagamento único:</p>
+                <p className="text-[11px] text-neutral-600 font-medium">Pagamento único:</p>
                 <div className="flex items-baseline gap-1 mt-0.5">
                   <span className="text-sm font-semibold text-neutral-600 font-heading">R$</span>
                   <span className="text-3xl sm:text-4xl font-bold text-[#1D1D1F] font-heading tracking-tight">9,99</span>
                 </div>
-                <p className="text-[11px] text-neutral-500 mt-1 font-sans-body">Acesso vitalício • Sem mensalidades</p>
+                <p className="text-[11px] text-neutral-600 mt-1 font-sans-body">Acesso vitalício • Sem mensalidades</p>
               </div>
 
               {/* Features List */}
@@ -182,8 +181,8 @@ export const PricingSection: React.FC = () => {
                   </div>
                   <span>Compatível com iPhone e Android</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-neutral-400">
-                  <span className="text-xs text-neutral-400">✕ Não inclui os 4 bônus especiais</span>
+                <div className="flex items-center gap-2.5 text-neutral-600">
+                  <span className="text-xs text-neutral-600">✕ Não inclui os 4 bônus especiais</span>
                 </div>
               </div>
             </div>
@@ -199,7 +198,7 @@ export const PricingSection: React.FC = () => {
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </button>
 
-              <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-neutral-500 font-sans-body">
+              <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-neutral-600 font-sans-body">
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3 text-emerald-600" />
                   Compra segura
