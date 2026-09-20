@@ -12,22 +12,27 @@ interface CheckoutClickData {
   value: number;
 }
 
-/**
- * Tracks only clicks that leave the sales page for a checkout.
- *
- * This event intentionally runs in the browser only. Purchase and checkout
- * events remain owned by the checkout/Utmify integrations, avoiding a second
- * server event without a matching event_id.
- */
-export const trackCheckoutClick = ({ location, plan, value }: CheckoutClickData) => {
-  if (typeof window === 'undefined' || typeof window.fbq !== 'function') return;
+export const trackCheckoutClick = ({
+  location,
+  plan,
+  value,
+}: CheckoutClickData) => {
+  try {
+    if (
+      typeof window === 'undefined' ||
+      typeof window.fbq !== 'function'
+    ) {
+      return;
+    }
 
-  window.fbq('trackCustom', 'CTA_Click', {
-    cta_location: location,
-    content_name: 'Pack Manu Stories',
-    currency: 'BRL',
-    plan,
-    value,
-  });
+    window.fbq('trackCustom', 'CTA_Click', {
+      cta_location: location,
+      content_name: 'Pack Manu Stories',
+      currency: 'BRL',
+      plan,
+      value,
+    });
+  } catch (error) {
+    console.warn('CTA_Click não enviado:', error);
+  }
 };
-
