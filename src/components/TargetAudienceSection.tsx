@@ -11,12 +11,11 @@ export const TargetAudienceSection: React.FC = () => {
         <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
           <SectionBadge>É para você?</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            O Pack Manu Stories é{' '}
+            O Pack Manu Stories foi feito para{' '}
             <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">perfeito para você</span>
+              <span className="relative z-10">mulheres que...</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
-            </span>{' '}
-            que...
+            </span>
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-neutral-600 font-sans-body">
             Se você se identifica com pelo menos um destes pontos, esse acervo foi feito para você:
