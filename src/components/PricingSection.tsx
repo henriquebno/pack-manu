@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CHECKOUT_LINKS } from '../data';
+import { CHECKOUT_LINKS, getCheckoutUrlWithUtms } from '../data';
 import { Check, Sparkles, ShieldCheck, Zap, Heart, Gift, ArrowRight, Star } from 'lucide-react';
 import { SectionBadge, UnderlineStroke } from './TitleAccents';
 import { UpsellModal } from './UpsellModal';
@@ -109,7 +109,7 @@ export const PricingSection: React.FC = () => {
             <div>
               <a
                 id="cta-completo-btn"
-                href={CHECKOUT_LINKS.completo}
+                href={getCheckoutUrlWithUtms(CHECKOUT_LINKS.completo)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() =>
@@ -119,7 +119,7 @@ export const PricingSection: React.FC = () => {
                     value: 27.9,
                   })
                 }
-                className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3 px-5 rounded-full shadow-md shadow-rose-500/20 transition-all text-center flex items-center justify-center gap-2 animate-cta-subtle group font-heading cursor-pointer"
+                className="elementor-button w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3 px-5 rounded-full shadow-md shadow-rose-500/20 transition-all text-center flex items-center justify-center gap-2 animate-cta-subtle group font-heading cursor-pointer"
               >
                 <span>QUERO O PACK COMPLETO + BÔNUS</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

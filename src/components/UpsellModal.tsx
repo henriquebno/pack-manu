@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { X, Sparkles, ShieldCheck, Zap } from 'lucide-react';
-import { CHECKOUT_LINKS } from '../data';
+import { CHECKOUT_LINKS, getCheckoutUrlWithUtms } from '../data';
 import { trackCheckoutClick } from '../lib/metaPixel';
 
 interface UpsellModalProps {
@@ -95,17 +95,20 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
           {/* Main Focused Button (R$ 19,90) */}
           <a
             id="upsell-accept-btn"
-            href={CHECKOUT_LINKS.completoOferta27}
+            href={getCheckoutUrlWithUtms(CHECKOUT_LINKS.completoOferta27)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() =>
-              trackCheckoutClick({
-                location: 'upsell_accept',
-                plan: 'complete_offer',
-                value: 19.9,
-              })
-            }
-            className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-bold text-xs sm:text-sm py-3 px-3 sm:px-4 rounded-full shadow-lg shadow-rose-500/25 transition-all flex items-center justify-center gap-2 uppercase tracking-wide font-heading text-center cursor-pointer"
+            onClick={() => {
+              try {
+                trackCheckoutClick({
+                  location: 'upsell_accept',
+                  plan: 'complete_offer',
+                  value: 19.9,
+                });
+              } catch (e) {}
+              onClose();
+            }}
+            className="elementor-button w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-bold text-xs sm:text-sm py-3 px-3 sm:px-4 rounded-full shadow-lg shadow-rose-500/25 transition-all flex items-center justify-center gap-2 uppercase tracking-wide font-heading text-center cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 shrink-0 text-amber-300 fill-amber-300" />
             <span className="leading-tight">SIM! QUERO APROVEITAR E LEVAR O COMPLETO POR R$ 19,90</span>
@@ -114,17 +117,20 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ isOpen, onClose }) => 
           {/* Discreet Secondary Option (R$ 9,99) */}
           <a
             id="upsell-decline-btn"
-            href={CHECKOUT_LINKS.essencial}
+            href={getCheckoutUrlWithUtms(CHECKOUT_LINKS.essencial)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() =>
-              trackCheckoutClick({
-                location: 'upsell_decline',
-                plan: 'essential',
-                value: 9.99,
-              })
-            }
-            className="mt-3 text-[11px] sm:text-xs text-neutral-600 hover:text-neutral-800 transition-colors underline underline-offset-2 font-sans-body text-center block px-2 leading-relaxed cursor-pointer"
+            onClick={() => {
+              try {
+                trackCheckoutClick({
+                  location: 'upsell_decline',
+                  plan: 'essential',
+                  value: 9.99,
+                });
+              } catch (e) {}
+              onClose();
+            }}
+            className="elementor-button mt-3 text-[11px] sm:text-xs text-neutral-600 hover:text-neutral-800 transition-colors underline underline-offset-2 font-sans-body text-center block px-2 leading-relaxed cursor-pointer"
           >
             Não, obrigada. Quero continuar apenas com o Pack Essencial por R$ 9,99.
           </a>

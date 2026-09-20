@@ -1,9 +1,18 @@
 import { BeforeAfterItem, TestimonialItem, BonusItem, FAQItem, StickerItem, StoryItem } from './types';
 
 export const CHECKOUT_LINKS = {
-  essencial: '/go/essencial.html',
-  completo: '/go/completo.html',
-  completoOferta27: '/go/completo-oferta.html',
+  essencial: 'https://lastlink.com/p/C7A2B2D27/checkout-payment',
+  completo: 'https://lastlink.com/p/C2F77B591/checkout-payment',
+  completoOferta27: 'https://lastlink.com/p/CDD343B37/checkout-payment',
+};
+
+export const getCheckoutUrlWithUtms = (url: string): string => {
+  if (typeof window === 'undefined') return url;
+  const search = window.location.search;
+  if (!search) return url;
+  const cleanSearch = search.startsWith('?') ? search.slice(1) : search;
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}${cleanSearch}`;
 };
 
 export const BEFORE_AFTER_DATA: BeforeAfterItem[] = [

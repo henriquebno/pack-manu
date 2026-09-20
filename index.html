@@ -125,6 +125,58 @@
           });
         } catch (e) {}
       })();
+
+      // 3. Safeguard against Utmify "Cannot read properties of undefined (reading '_id')"
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          if (!originalFetch) return;
+          window.fetch = function(input, init) {
+            var url = typeof input === 'string' ? input : (input && input.url ? input.url : '');
+            var isUtmifyEvents = (typeof url === 'string') && url.indexOf('utmify') !== -1 && url.indexOf('events') !== -1;
+            var fetchPromise = originalFetch.apply(this, arguments);
+            if (!isUtmifyEvents) {
+              return fetchPromise;
+            }
+            return fetchPromise.then(function(response) {
+              try {
+                var clone = response.clone();
+                return clone.json().then(function(data) {
+                  if (data && typeof data === 'object') {
+                    var changed = false;
+                    if (!data.lead) {
+                      data.lead = { _id: 'lead_' + Date.now() };
+                      changed = true;
+                    } else if (data.lead && !data.lead._id) {
+                      data.lead._id = 'lead_' + Date.now();
+                      changed = true;
+                    }
+                    if (!data.event) {
+                      data.event = { _id: 'event_' + Date.now(), pageTitle: document.title || '', sourceUrl: window.location.href };
+                      changed = true;
+                    } else if (data.event && !data.event._id) {
+                      data.event._id = 'event_' + Date.now();
+                      changed = true;
+                    }
+                    if (changed) {
+                      return new Response(JSON.stringify(data), {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers: response.headers
+                      });
+                    }
+                  }
+                  return response;
+                }).catch(function() {
+                  return response;
+                });
+              } catch (e) {
+                return response;
+              }
+            });
+          };
+        } catch (err) {}
+      })();
     </script>
 
   </head>
