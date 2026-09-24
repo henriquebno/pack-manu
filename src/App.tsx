@@ -6,21 +6,24 @@
 import React, { useState } from 'react';
 import { TopBanner } from './components/TopBanner';
 import { HeroSection } from './components/HeroSection';
-import { NichesSection } from './components/NichesSection';
-import { PainPointsSection } from './components/PainPointsSection';
 import { BeforeAfterSection } from './components/BeforeAfterSection';
-import { FeaturesLibrarySection } from './components/FeaturesLibrarySection';
-import { TargetAudienceSection } from './components/TargetAudienceSection';
+import { PainPointsSection } from './components/PainPointsSection';
+import { NichesSection } from './components/NichesSection';
+import { HowItWorksSection } from './components/HowItWorksSection';
+import { MiniCTASection } from './components/MiniCTASection';
 import { TestimonialsSection } from './components/TestimonialsSection';
-import { BonusesSection } from './components/BonusesSection';
+import { FeaturesLibrarySection } from './components/FeaturesLibrarySection';
 import { InspirationsGallery } from './components/InspirationsGallery';
+import { BonusesSection } from './components/BonusesSection';
+import { TargetAudienceSection } from './components/TargetAudienceSection';
 import { PricingSection } from './components/PricingSection';
 import { GuaranteeSection } from './components/GuaranteeSection';
 import { CreatorSection } from './components/CreatorSection';
 import { RecapSection } from './components/RecapSection';
-import { FAQSection } from './components/FAQSection';
 import { FinalCTASection } from './components/FinalCTASection';
+import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
+import { StickyBottomBar } from './components/StickyBottomBar';
 import { LegalModal } from './components/LegalModal';
 import { SalesNotification } from './components/SalesNotification';
 
@@ -33,59 +36,68 @@ export default function App() {
       <TopBanner />
 
       <main className="flex-1">
-        {/* 2. Hero Section with Mockup */}
+        {/* 2. Hero Section */}
         <HeroSection />
 
-        {/* 3. Niches & Daily Moments (Directly below Hero Section) */}
-        <NichesSection />
+        {/* 3. Before & After Transformation */}
+        <BeforeAfterSection />
 
         {/* 4. Pain Points / Identification */}
         <PainPointsSection />
 
-        {/* 5. Before & After Interactive Transformations */}
-        <BeforeAfterSection />
+        {/* 5. Niches & Daily Moments */}
+        <NichesSection />
 
-        {/* 6. What's Inside & Stickers Mosaic (+15.000 elements) */}
-        <FeaturesLibrarySection />
+        {/* 6. 3-Step How It Works */}
+        <HowItWorksSection />
 
-        {/* 7. Who is this for? Checklist */}
-        <TargetAudienceSection />
+        {/* 7. Mini CTA Banner */}
+        <MiniCTASection />
 
-        {/* 8. Social Proof & Verified Testimonials */}
+        {/* 8. Social Proof & Testimonials */}
         <TestimonialsSection />
 
-        {/* 9. 4 Exclusive Bonuses (R$ 198 in value for free) */}
-        <BonusesSection />
+        {/* 9. Product Features & Library (+15.000 items) */}
+        <FeaturesLibrarySection />
 
-        {/* 10. Inspirations Gallery (Interactive Story Showcase) */}
+        {/* 10. Inspirations Gallery (Real Story Showcase) */}
         <InspirationsGallery />
 
-        {/* 11. Pricing Plans (Pack Essencial R$ 9,99 & Pack Completo R$ 27,90) */}
+        {/* 11. Exclusive Bonuses */}
+        <BonusesSection />
+
+        {/* 12. Target Audience (Is for you / Not for you) */}
+        <TargetAudienceSection />
+
+        {/* 13. Pricing Plans (Oferta Especial) */}
         <PricingSection />
 
-        {/* 12. 7-Day Unconditional Guarantee */}
+        {/* 14. 7-Day Unconditional Guarantee */}
         <GuaranteeSection />
 
-        {/* 13. Creator Section */}
+        {/* 15. Creator Story (Quem é Manu?) */}
         <CreatorSection />
 
-        {/* 14. Motivational Pre-closing Summary */}
+        {/* 16. Recap Summary */}
         <RecapSection />
 
-        {/* 15. FAQ Accordion */}
-        <FAQSection />
-
-        {/* 16. Final High-Urgency CTA Section */}
+        {/* 17. Final High-Urgency CTA Section */}
         <FinalCTASection />
+
+        {/* 18. FAQ Accordion */}
+        <FAQSection />
       </main>
 
-      {/* 17. Footer */}
+      {/* 19. Footer */}
       <Footer onOpenLegal={(type) => setLegalModalType(type)} />
 
-      {/* 18. Social Proof Sales Notification (8s interval, max 10 people) */}
+      {/* 20. Floating Sticky CTA Bar */}
+      <StickyBottomBar />
+
+      {/* 21. Social Proof Sales Notification */}
       <SalesNotification />
 
-      {/* 19. Legal Modal (Terms / Privacy) */}
+      {/* 22. Legal Modal (Terms / Privacy) */}
       <LegalModal
         isOpen={legalModalType !== null}
         type={legalModalType}
@@ -94,4 +106,3 @@ export default function App() {
     </div>
   );
 }
-

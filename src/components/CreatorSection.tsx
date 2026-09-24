@@ -26,11 +26,11 @@ export const CreatorSection: React.FC = () => {
           {/* Creator Content */}
           <div className="flex-1">
             <span className="text-[11px] uppercase tracking-widest font-semibold text-rose-700 bg-rose-50 border border-rose-100/90 px-3 py-1 rounded-full inline-block mb-3 font-heading">
-              QUEM ESTÁ POR TRÁS
+              ✨ CONHEÇA A CRIADORA
             </span>
 
             <h2 className="text-2xl sm:text-3xl text-[#1D1D1F] font-heading uppercase tracking-wide mb-4 flex items-center justify-center sm:justify-start gap-1.5 flex-wrap">
-              <span>Oi, eu sou a Manu!</span>
+              <span>Quem é Manu?</span>
               {/* Coração vermelho com apenas o traço feito à mão com caneta */}
               <svg
                 className="w-6 h-6 sm:w-7 sm:h-7 text-red-500 inline-block shrink-0 drop-shadow-2xs -mt-1"
@@ -51,23 +51,15 @@ export const CreatorSection: React.FC = () => {
 
             <div className="space-y-3.5 text-xs sm:text-[14px] text-neutral-600 leading-relaxed font-sans-body">
               <p>
-                Sou UGC Creator e apaixonada por transformar momentos simples da rotina em conteúdos bonitos, leves e com personalidade.
+                Muito antes de atuar profissionalmente, eu já era apaixonada por stories bem construídos, estéticos e elegantes. Antes mesmo de existir estratégia ou briefing, eu já criava figurinhas personalizadas para deixar minhas próprias publicações com um toque único.
               </p>
 
               <p>
-                Depois de testar milhares de formas de deixar meus próprios Stories mais bonitos sem perder horas editando, comecei a reunir os elementos que eu mais usava no dia a dia.
+                Com o tempo, percebi que esse cuidado visual poderia ir além do meu perfil. Foi então que decidi disponibilizar minhas criações para ajudar outras mulheres a deixarem seus stories mais bonitos, organizados e atrativos — sem complicação e sem perder tempo.
               </p>
 
               <p className="text-neutral-800 font-medium">
-                Foi assim que nasceu o <span className="text-rose-600 font-semibold">Pack Manu Stories</span> 💗
-              </p>
-
-              <p>
-                Uma coleção criada para mulheres que também querem transformar fotos simples em Stories bonitos, organizados e com aquele toque aesthetic, mesmo sem entender nada de design.
-              </p>
-
-              <p className="text-neutral-700">
-                Hoje, compartilho tudo que aprendi criando conteúdo para ajudar outras mulheres a postarem mais, gastarem menos tempo editando e amarem o resultado dos próprios Stories. ✨
+                Hoje, fico imensamente feliz ao ver mais de <span className="text-rose-600 font-semibold">47 mil pessoas</span> transformando suas redes através do Pack Manu Stories, trazendo mais estética, leveza e personalidade para o seu dia a dia. ✨
               </p>
             </div>
           </div>

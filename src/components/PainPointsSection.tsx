@@ -6,27 +6,27 @@ export const PainPointsSection: React.FC = () => {
   const painPoints = [
     {
       icon: ImageOff,
-      title: 'Stories sem graça',
-      description: 'Você posta a foto, mas sente que ela ficou simples demais e não chama atenção.',
-      tag: 'Falta destaque',
+      title: 'Stories bagunçados',
+      description: 'Você posta, mas sente que algo está faltando. Sem padrão, sem harmonia.',
+      tag: 'Falta harmonia',
     },
     {
       icon: Shuffle,
-      title: 'Falta de harmonia',
-      description: 'Você tenta adicionar textos, GIFs e elementos, mas parece que nada combina.',
-      tag: 'Visual poluído',
+      title: 'Perfil amador',
+      description: 'Você olha para outros perfis e pensa: "Por que o meu não fica assim?"',
+      tag: 'Comparação',
     },
     {
       icon: Fingerprint,
       title: 'Sem identidade',
-      description: 'Cada Story fica com um estilo diferente e seu perfil não transmite organização e cuidado.',
+      description: 'Cada Story parece de uma pessoa diferente. Nada combina entre si.',
       tag: 'Inconsistência',
     },
     {
       icon: Clock,
-      title: 'Tempo perdido tentando editar',
-      description: 'Testa uma fonte, apaga. Procura GIF, não encontra. Muda a cor. Tenta de novo... Uma coisa de segundos vira um trabalho.',
-      tag: 'Cansaço',
+      title: 'Vergonha de postar',
+      description: 'Você deixa de compartilhar momentos porque sente que "não está bonito o suficiente".',
+      tag: 'Insegurança',
     },
   ];
 
@@ -38,17 +38,15 @@ export const PainPointsSection: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <SectionBadge>Você se identifica?</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            Você também sente que seus Stories poderiam ser{' '}
+            Seu Instagram não reflete quem você{' '}
             <MarkerHighlight colorClass="bg-rose-200/60">
-              <span className="text-rose-600">muito mais bonitos?</span>
+              <span className="text-rose-600">realmente é</span>
             </MarkerHighlight>
           </h2>
           
-          <div className="mt-3.5 space-y-1.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body leading-relaxed">
-            <p>Você tira uma foto legal, quer compartilhar aquele momento...</p>
-            <p>Mas quando abre os Stories, parece que <strong className="text-neutral-900 font-semibold">falta alguma coisa</strong>.</p>
-            <p>A foto está boa, só falta o acabamento estético que você admira em outros perfis.</p>
-          </div>
+          <p className="mt-3.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body leading-relaxed max-w-xl mx-auto">
+            Você se dedica, tem conteúdo bom, mas visualmente... algo não funciona. E isso te frustra.
+          </p>
         </div>
 
         {/* 4 Pain Cards Grid */}

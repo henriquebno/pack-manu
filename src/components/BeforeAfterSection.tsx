@@ -17,9 +17,9 @@ export const BeforeAfterSection: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <SectionBadge>A Transformação</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            De fotos comuns para{' '}
+            A mesma foto. Só que com o{' '}
             <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">Stories memoráveis ✨</span>
+              <span className="relative z-10">Pack Manu Stories ✨</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>
           </h2>
@@ -169,11 +169,11 @@ export const BeforeAfterSection: React.FC = () => {
           {/* CTA */}
           <div className="mt-7 text-center">
             <a
-              href="#planos"
-              className="inline-flex items-center gap-2 bg-[#1D1D1F] hover:bg-neutral-800 active:scale-[0.98] text-white font-medium text-xs sm:text-sm py-2.5 px-5 rounded-full shadow-xs transition-all font-heading"
+              href="#oferta"
+              className="inline-flex items-center gap-2 bg-[#1D1D1F] hover:bg-neutral-800 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3 px-6 rounded-full shadow-xs transition-all font-heading"
             >
-              <span>TRANSFORMAR MEUS STORIES TAMBÉM</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>QUERO FAZER ISSO NOS MEUS STORIES</span>
+              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 

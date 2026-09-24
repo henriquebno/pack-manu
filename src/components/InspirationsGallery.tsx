@@ -65,14 +65,14 @@ export const InspirationsGallery: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-8">
           <SectionBadge>Inspirações Reais</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            Veja como ficam os seus{' '}
+            Veja como ficam{' '}
             <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">Stories ✨</span>
+              <span className="relative z-10">seus stories ✨</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>
           </h2>
-          <p className="mt-2 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
-            Mais de 500 composições criadas usando exclusivamente os elementos do Pack Manu Stories.
+          <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
+            Mais de 500 stories prontos pra você usar em qualquer momento do seu dia.
           </p>
         </div>
 

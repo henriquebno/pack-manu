@@ -52,10 +52,10 @@ export const StickyBottomBar: React.FC = () => {
 
         {/* Right CTA button */}
         <a
-          href="#planos"
+          href="#oferta"
           className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-medium text-xs sm:text-sm py-2 px-4 sm:px-6 rounded-full shadow-xs transition-all flex items-center gap-1.5 whitespace-nowrap font-heading"
         >
-          <span>QUERO O MEU PACK</span>
+          <span>QUERO ACESSAR</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </a>
 

@@ -10,16 +10,17 @@ export const TestimonialsSection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <SectionBadge>Avaliações Reais</SectionBadge>
+          <SectionBadge>Prova Social</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            Veja o que diz quem já usa o{' '}
+            Milhares de mulheres já{' '}
             <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">Pack Manu Stories</span>
+              <span className="relative z-10">transformaram ✨</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
-            </span>
+            </span>{' '}
+            seus Stories
           </h2>
-          <p className="mt-2 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
-            Milhares de alunas já transformaram seus Stories de forma leve, rápida e elegante.
+          <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
+            Veja o que elas estão dizendo sobre o Pack Manu Stories:
           </p>
         </div>
 
@@ -29,16 +30,16 @@ export const TestimonialsSection: React.FC = () => {
             <div className="w-8 h-8 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-1.5">
               <Users className="w-4 h-4" />
             </div>
-            <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">+28.000</p>
-            <p className="text-[11px] text-neutral-600 font-sans-body">Alunas ativas</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">5.000+</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Mulheres usando</p>
           </div>
 
           <div className="border-r border-neutral-100 last:border-0 pr-2">
             <div className="w-8 h-8 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-1.5">
               <Star className="w-4 h-4 fill-amber-400" />
             </div>
-            <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">4.9 / 5.0</p>
-            <p className="text-[11px] text-neutral-600 font-sans-body">Avaliação média</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">4.9</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Nota média</p>
           </div>
 
           <div className="border-r border-neutral-100 last:border-0 pr-2">
@@ -46,7 +47,7 @@ export const TestimonialsSection: React.FC = () => {
               <Sparkles className="w-4 h-4" />
             </div>
             <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">+15.000</p>
-            <p className="text-[11px] text-neutral-600 font-sans-body">Elementos inclusos</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Elementos</p>
           </div>
 
           <div>
@@ -54,7 +55,7 @@ export const TestimonialsSection: React.FC = () => {
               <CheckCircle className="w-4 h-4" />
             </div>
             <p className="text-xl sm:text-2xl font-bold text-[#1D1D1F] font-heading">100%</p>
-            <p className="text-[11px] text-neutral-600 font-sans-body">Garantia total</p>
+            <p className="text-[11px] text-neutral-600 font-sans-body">Satisfação</p>
           </div>
         </div>
 

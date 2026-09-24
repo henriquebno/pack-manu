@@ -31,16 +31,18 @@ export const GuaranteeSection: React.FC = () => {
             </div>
             
             <h2 className="text-xl sm:text-2xl text-[#1D1D1F] font-heading uppercase tracking-wide mb-2">
-              Experimente por{' '}
+              Garantia de{' '}
               <span className="relative inline-block text-rose-600">
                 <span className="relative z-10">7 dias</span>
                 <UnderlineStroke className="-bottom-0.5" color="#e11d48" />
-              </span>{' '}
-              com tranquilidade
+              </span>
             </h2>
             
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans-body">
-              Você pode conhecer todo o material sem assumir nenhum risco. Você terá <strong>7 dias completos</strong> para acessar o Pack Manu Stories. Se por qualquer motivo achar que não é para você, basta solicitar o reembolso e você recebe de volta <strong>100% do valor pago</strong>. Simples e rápido.
+              Se por qualquer motivo você não ficar satisfeita com o Pack Manu Stories, basta enviar um e-mail em até 7 dias após a compra e devolvemos <strong>100% do seu investimento</strong>. Sem perguntas, sem burocracia. Simples assim.
+            </p>
+            <p className="text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body mt-2">
+              Seu único risco é não experimentar.
             </p>
           </div>
 

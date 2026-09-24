@@ -94,7 +94,7 @@ export const BonusesSection: React.FC = () => {
           </p>
           <div className="mt-4">
             <a
-              href="#planos"
+              href="#oferta"
               className="inline-flex items-center gap-2 bg-white text-neutral-900 hover:bg-neutral-100 active:scale-[0.98] font-semibold text-xs sm:text-sm py-2.5 px-5 rounded-full shadow-xs transition-all font-heading"
             >
               <span>Garantir Meus Bônus Grátis</span>

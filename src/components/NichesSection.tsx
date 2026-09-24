@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckCircle2, Coffee, Briefcase, Sparkles } from 'lucide-react';
-import { SectionBadge, MarkerHighlight } from './TitleAccents';
+import { SectionBadge, MarkerHighlight, UnderlineStroke } from './TitleAccents';
 
 export const NichesSection: React.FC = () => {
   const routineItems = [
@@ -49,13 +49,14 @@ export const NichesSection: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <SectionBadge>Para Todos os Momentos</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            E não importa o que você{' '}
-            <MarkerHighlight colorClass="bg-rose-200/60">
-              <span className="text-rose-600">gosta de postar...</span>
-            </MarkerHighlight>
+            Tem figurinha para{' '}
+            <span className="relative inline-block text-rose-600">
+              <span className="relative z-10">praticamente tudo ✨</span>
+              <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
+            </span>
           </h2>
-          <p className="mt-2 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
-            Você terá elementos para praticamente todos os momentos da sua rotina e do seu trabalho.
+          <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
+            Mais de 10.000 figurinhas organizadas por nicho e por momento do seu dia.
           </p>
         </div>
 

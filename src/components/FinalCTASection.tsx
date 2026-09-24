@@ -11,29 +11,29 @@ export const FinalCTASection: React.FC = () => {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 text-center">
         
         <SectionBadge badgeClassName="text-rose-300 bg-white/10 border-white/15">
-          Sua Vez de Brilhar nos Stories
+          Última Chance
         </SectionBadge>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading uppercase tracking-wide leading-[1.05] max-w-2xl mx-auto">
-          Chega de olhar para seus Stories e pensar:{' '}
+          Seu Instagram merece refletir quem{' '}
           <span className="relative inline-block text-rose-400">
-            <span className="relative z-10">“está faltando alguma coisa.”</span>
+            <span className="relative z-10">você realmente é</span>
             <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#fb7185" />
           </span>
         </h2>
 
         <p className="mt-3.5 text-xs sm:text-sm md:text-base text-neutral-300 max-w-xl mx-auto leading-relaxed font-sans-body">
-          Tenha uma biblioteca com mais de <strong>15.000 elementos sempre à mão</strong> no seu celular e transforme até as fotos mais simples em composições elegantes.
+          Não deixe para depois. Cada dia que passa é um dia a menos com Stories que não representam sua verdadeira essência.
         </p>
 
         {/* CTA Button */}
         <div className="mt-7 flex flex-col items-center">
           <a
             id="final-cta-btn"
-            href="#planos"
-            className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3 px-6 sm:px-8 rounded-full shadow-lg shadow-rose-600/30 transition-all flex items-center justify-center gap-2 font-heading"
+            href="#oferta"
+            className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3.5 px-8 sm:px-10 rounded-full shadow-lg shadow-rose-600/30 transition-all flex items-center justify-center gap-2 font-heading"
           >
-            <span>QUERO GARANTIR MEU ACESSO AGORA</span>
+            <span>QUERO TRANSFORMAR MEUS STORIES AGORA</span>
             <ArrowRight className="w-4 h-4" />
           </a>
 

@@ -67,21 +67,21 @@ export const FeaturesLibrarySection: React.FC = () => {
   ];
 
   return (
-    <section className="py-14 md:py-24 bg-[#FAF9F6] border-t border-neutral-200/60 overflow-hidden">
+    <section id="produto" className="py-14 md:py-24 bg-[#FAF9F6] border-t border-neutral-200/60 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <SectionBadge>Biblioteca Completa</SectionBadge>
+          <SectionBadge>O Que Você Recebe</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
             <span className="relative inline-block text-rose-600 mr-2">
               <span className="relative z-10">+15.000 elementos</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>
-            prontos para os seus Stories
+            prontos para transformar seus Stories
           </h2>
           <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
-            Arquivos com fundo 100% transparente para copiar e colar em segundos no Instagram.
+            Uma coleção completa, curada especialmente para mulheres que valorizam estética, organização e elegância.
           </p>
         </div>
 

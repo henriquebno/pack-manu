@@ -9,16 +9,17 @@ export const PricingSection: React.FC = () => {
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
 
   return (
-    <section id="planos" className="py-14 md:py-24 bg-[#FBF9F6] relative border-t border-neutral-200/60">
+    <section id="oferta" className="py-14 md:py-24 bg-[#FBF9F6] relative border-t border-neutral-200/60 scroll-mt-6">
+      <span id="planos" className="sr-only" />
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-          <SectionBadge>Oferta Especial por Tempo Limitado</SectionBadge>
+          <SectionBadge>Oferta Especial</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            Escolha o seu{' '}
+            Escolha o plano{' '}
             <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">plano de acesso ✨</span>
+              <span className="relative z-10">ideal para você ✨</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>
           </h2>
