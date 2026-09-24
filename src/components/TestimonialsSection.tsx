@@ -64,28 +64,30 @@ export const TestimonialsSection: React.FC = () => {
           {TESTIMONIALS.map((t) => (
             <div
               key={t.id}
-              className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200/70 shadow-2xs hover:border-neutral-300 transition-all flex flex-col justify-between"
+              className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200/80 shadow-2xs hover:border-neutral-300 transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center gap-1 mb-2.5 text-amber-400">
+                <div className="flex items-center gap-1 mb-3 text-amber-400">
                   {[...Array(t.stars)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
+
                 <p className="text-xs sm:text-sm text-neutral-700 italic leading-relaxed font-sans-body">
                   “{t.quote}”
                 </p>
               </div>
 
               <div className="mt-4 pt-3.5 border-t border-neutral-100 flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-xs">
+                <div className="w-8 h-8 rounded-full bg-linear-to-br from-neutral-800 to-neutral-900 text-white flex items-center justify-center font-bold text-xs shadow-2xs">
                   {t.author.charAt(0)}
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-[#1D1D1F] leading-tight font-heading">
+                  <p className="text-xs font-bold text-[#1D1D1F] leading-tight font-heading flex items-center gap-1">
                     {t.author}
+                    <CheckCircle className="w-3 h-3 text-emerald-500 fill-emerald-100 inline" />
                   </p>
-                  <p className="text-[11px] text-rose-600 font-sans-body">
+                  <p className="text-[11px] text-rose-600 font-sans-body font-medium">
                     {t.role}
                   </p>
                 </div>

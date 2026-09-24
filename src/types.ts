@@ -14,6 +14,7 @@ export interface TestimonialItem {
   author: string;
   role: string;
   stars: number;
+  tag?: string;
 }
 
 export interface BonusItem {

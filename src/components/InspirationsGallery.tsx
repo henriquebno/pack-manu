@@ -38,7 +38,7 @@ export const InspirationsGallery: React.FC = () => {
   const row2 = ALL_STORIES_CAROUSEL.slice(half);
 
   return (
-    <section className="py-14 md:py-24 bg-[#FAF9F6] border-t border-neutral-200/60 overflow-hidden relative">
+    <section id="inspiracoes" className="py-14 md:py-24 bg-[#FAF9F6] border-t border-neutral-200/60 overflow-hidden relative scroll-mt-6">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Narrative Box */}
