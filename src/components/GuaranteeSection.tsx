@@ -14,7 +14,7 @@ export const GuaranteeSection: React.FC = () => {
               <div className="w-full h-full rounded-full bg-white flex flex-col items-center justify-center p-2 text-[#1D1D1F]">
                 <ShieldCheck className="w-6 h-6 text-rose-600 mb-0.5" />
                 <span className="text-xl sm:text-2xl font-bold font-heading leading-none text-[#1D1D1F]">
-                  7 DIAS
+                  15 DIAS
                 </span>
                 <span className="text-[9px] font-bold text-neutral-600 uppercase tracking-widest font-heading mt-0.5">
                   GARANTIA
@@ -33,13 +33,13 @@ export const GuaranteeSection: React.FC = () => {
             <h2 className="text-xl sm:text-2xl text-[#1D1D1F] font-heading uppercase tracking-wide mb-2">
               Garantia de{' '}
               <span className="relative inline-block text-rose-600">
-                <span className="relative z-10">7 dias</span>
+                <span className="relative z-10">15 dias</span>
                 <UnderlineStroke className="-bottom-0.5" color="#e11d48" />
               </span>
             </h2>
             
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans-body">
-              Se por qualquer motivo você não ficar satisfeita com o Pack Manu Stories, basta enviar um e-mail em até 7 dias após a compra e devolvemos <strong>100% do seu investimento</strong>. Sem perguntas, sem burocracia. Simples assim.
+              Se por qualquer motivo você não ficar satisfeita com o Pack Manu Stories, basta enviar um e-mail em até 15 dias após a compra e devolvemos <strong>100% do seu investimento</strong>. Sem perguntas, sem burocracia. Simples assim.
             </p>
             <p className="text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body mt-2">
               Seu único risco é não experimentar.

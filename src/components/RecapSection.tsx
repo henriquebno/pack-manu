@@ -40,7 +40,7 @@ export const RecapSection: React.FC = () => {
             🎁 4 Bônus inclusos
           </div>
           <div className="bg-[#FAF9F6] rounded-xl p-2.5 border border-neutral-200/70 text-[11px] font-bold text-neutral-800 font-heading">
-            💗 7 dias de garantia
+            💗 15 dias de garantia
           </div>
         </div>
 

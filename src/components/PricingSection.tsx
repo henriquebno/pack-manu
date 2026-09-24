@@ -139,7 +139,7 @@ export const PricingSection: React.FC = () => {
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Heart className="w-3 h-3 text-rose-500" />
-                  7 dias de garantia
+                  15 dias de garantia
                 </span>
               </div>
             </div>

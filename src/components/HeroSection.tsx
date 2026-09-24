@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { UnderlineStroke } from './TitleAccents';
 
 export const HeroSection: React.FC = () => {
@@ -60,65 +60,24 @@ export const HeroSection: React.FC = () => {
             <p className="mt-3 text-[11px] text-neutral-500 font-sans-body">
               A partir de <strong className="text-neutral-800 font-semibold">R$ 9,99</strong> • pagamento único
             </p>
-
-            {/* Checkpoints list */}
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 w-full text-center">
-              <div className="flex items-center justify-center gap-1 text-[11px] text-neutral-600 bg-white border border-neutral-200/70 py-1.5 px-2 rounded-xl shadow-2xs font-sans-body">
-                <Check className="w-3 h-3 text-emerald-600 shrink-0 stroke-[2.5]" />
-                <span>Acesso imediato</span>
-              </div>
-              <div className="flex items-center justify-center gap-1 text-[11px] text-neutral-600 bg-white border border-neutral-200/70 py-1.5 px-2 rounded-xl shadow-2xs font-sans-body">
-                <Check className="w-3 h-3 text-emerald-600 shrink-0 stroke-[2.5]" />
-                <span>+15.000 itens</span>
-              </div>
-              <div className="flex items-center justify-center gap-1 text-[11px] text-neutral-600 bg-white border border-neutral-200/70 py-1.5 px-2 rounded-xl shadow-2xs font-sans-body">
-                <Check className="w-3 h-3 text-emerald-600 shrink-0 stroke-[2.5]" />
-                <span>Fácil de usar</span>
-              </div>
-              <div className="flex items-center justify-center gap-1 text-[11px] text-neutral-600 bg-white border border-neutral-200/70 py-1.5 px-2 rounded-xl shadow-2xs font-sans-body">
-                <Check className="w-3 h-3 text-emerald-600 shrink-0 stroke-[2.5]" />
-                <span>Acesso vitalício</span>
-              </div>
-            </div>
           </div>
 
           {/* Hero Visual Mockup */}
           <div className="relative mt-10 sm:mt-12 w-full max-w-3xl mx-auto">
             <div className="relative mx-auto rounded-3xl p-2 bg-white/70 shadow-xl shadow-black/5 border border-black/[0.04]">
               <picture>
-                <source media="(max-width: 640px)" srcSet="/images/hero-mockup-mobile.webp" type="image/webp" width={640} height={640} />
+                <source media="(max-width: 640px)" srcSet="/images/hero-mockup-new-mobile.webp" type="image/webp" width={640} height={640} />
                 <img
-                  src="/images/hero-mockup-DsMjv5DB.webp"
+                  src="/images/hero-mockup-new.webp"
                   alt="Pack Manu Stories Mockup em smartphones"
                   className="w-full h-auto rounded-2xl object-cover"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  width={1024}
-                  height={1024}
+                  width={1254}
+                  height={1254}
                 />
               </picture>
-
-              {/* Floating aesthetic feature tags */}
-              <div className="absolute -bottom-3 left-3 sm:left-6 bg-white/95 backdrop-blur-md border border-neutral-200/80 rounded-2xl py-1.5 px-3 shadow-md flex items-center gap-2 animate-float">
-                <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center text-rose-600 text-xs">
-                  ✨
-                </div>
-                <div className="text-left">
-                  <p className="text-[10px] font-bold text-neutral-900 leading-tight font-heading">Fundo Transparente</p>
-                  <p className="text-[9px] text-neutral-600 font-sans-body">Copie e cole direto no Story</p>
-                </div>
-              </div>
-
-              <div className="absolute -top-2.5 right-3 sm:right-6 bg-white/95 backdrop-blur-md border border-neutral-200/80 rounded-2xl py-1.5 px-3 shadow-md flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 text-xs">
-                  ⚡
-                </div>
-                <div className="text-left">
-                  <p className="text-[10px] font-bold text-neutral-900 leading-tight font-heading">Pronto em 30 segundos</p>
-                  <p className="text-[9px] text-neutral-600 font-sans-body">Pelo próprio celular</p>
-                </div>
-              </div>
             </div>
           </div>
 

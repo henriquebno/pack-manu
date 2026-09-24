@@ -194,7 +194,7 @@ export const FAQ_DATA: FAQItem[] = [
   },
   {
     question: 'Tenho garantia?',
-    answer: 'Sim. Sua compra conta com garantia incondicional de 7 dias. Se você entrar e sentir que não é para você, basta solicitar o reembolso e 100% do seu dinheiro será devolvido sem perguntas.',
+    answer: 'Sim. Sua compra conta com garantia incondicional de 15 dias. Se você entrar e sentir que não é para você, basta solicitar o reembolso e 100% do seu dinheiro será devolvido sem perguntas.',
   },
 ];
 

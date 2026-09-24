@@ -49,7 +49,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ isOpen, type, onClose })
                 <strong>3. Acesso e Entrega:</strong> O acesso é vitalício e entregue por via eletrônica logo após a confirmação do pagamento.
               </p>
               <p>
-                <strong>4. Garantia Incondicional:</strong> Em consonância com o Código de Defesa do Consumidor, oferecemos 7 dias corridos para solicitação de estorno total caso o material não atenda às suas expectativas.
+                <strong>4. Garantia Incondicional:</strong> Em consonância com o Código de Defesa do Consumidor, oferecemos 15 dias corridos para solicitação de estorno total caso o material não atenda às suas expectativas.
               </p>
             </>
           ) : (

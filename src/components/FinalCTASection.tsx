@@ -50,7 +50,7 @@ export const FinalCTASection: React.FC = () => {
             <span>•</span>
             <span className="flex items-center gap-1">
               <Heart className="w-3.5 h-3.5 text-rose-400" />
-              Garantia de 7 dias
+              Garantia de 15 dias
             </span>
           </div>
         </div>
