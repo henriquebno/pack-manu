@@ -21,20 +21,20 @@ export const HeroSection: React.FC = () => {
 
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl text-[#1D1D1F] tracking-wide leading-[1.05] max-w-3xl font-heading uppercase">
-            Deixe qualquer Story muito mais{' '}
+            Deixe seus Stories mais{' '}
             <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">bonito</span>
+              <span className="relative z-10">bonitos</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>{' '}
-            em segundos
+            em poucos cliques.
           </h1>
 
           {/* Subtitle */}
           <p className="mt-3.5 text-xs sm:text-sm md:text-base text-neutral-600 max-w-xl font-sans-body leading-relaxed">
-            Tenha acesso a um Pack de Figurinhas com milhares de opções para academia, viagens, estudos, skincare, maternidade, fé, rotina e muito mais.
+            Tenha +15.000 figurinhas e elementos prontos para usar em Stories de trabalho, rotina, academia, fé, beleza, comida, viagens e muito mais.
           </p>
-          <p className="mt-1 text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body">
-            Não precisa saber editar.
+          <p className="mt-1.5 text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body">
+            Sem precisar criar do zero ou perder tempo procurando GIFs.
           </p>
 
           {/* CTA Buttons & Microcopy */}

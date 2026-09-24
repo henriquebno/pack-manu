@@ -6,27 +6,27 @@ export const PainPointsSection: React.FC = () => {
   const painPoints = [
     {
       icon: ImageOff,
-      title: 'Stories bagunçados',
-      description: 'Você posta, mas sente que algo está faltando. Sem padrão, sem harmonia.',
-      tag: 'Falta harmonia',
-    },
-    {
-      icon: Shuffle,
-      title: 'Perfil amador',
-      description: 'Você olha para outros perfis e pensa: "Por que o meu não fica assim?"',
-      tag: 'Comparação',
-    },
-    {
-      icon: Fingerprint,
-      title: 'Sem identidade',
-      description: 'Cada Story parece de uma pessoa diferente. Nada combina entre si.',
-      tag: 'Inconsistência',
+      number: '01',
+      title: 'STORIES SEM GRAÇA',
+      description: 'Você posta uma foto ou vídeo, mas sente que está “cru”. Falta detalhe, acabamento e um visual mais bonito.',
     },
     {
       icon: Clock,
-      title: 'Vergonha de postar',
-      description: 'Você deixa de compartilhar momentos porque sente que "não está bonito o suficiente".',
-      tag: 'Insegurança',
+      number: '02',
+      title: 'VOCÊ PERDE TEMPO DEMAIS',
+      description: 'Abre Pinterest, Canva, GIFs, fontes, referências… e mesmo assim demora para montar um Story simples.',
+    },
+    {
+      icon: Shuffle,
+      number: '03',
+      title: 'NADA COMBINA ENTRE SI',
+      description: 'Cada Story fica de um jeito. Um fofo, outro apagado, outro aleatório — e o perfil perde identidade.',
+    },
+    {
+      icon: Fingerprint,
+      number: '04',
+      title: 'VOCÊ PENSA DEMAIS ANTES DE POSTAR',
+      description: 'Muitas vezes você até quer aparecer mais, mas trava porque acha que o Story não ficou bonito o suficiente.',
     },
   ];
 
@@ -37,15 +37,21 @@ export const PainPointsSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <SectionBadge>Você se identifica?</SectionBadge>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
-            Seu Instagram não reflete quem você{' '}
-            <MarkerHighlight colorClass="bg-rose-200/60">
-              <span className="text-rose-600">realmente é</span>
-            </MarkerHighlight>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-tight">
+            VOCÊ ATÉ TEM BOM GOSTO<br />
+            <span>
+              MAS SEUS STORIES AINDA NÃO FICAM{' '}
+              <MarkerHighlight colorClass="bg-rose-200/60">
+                <span className="text-rose-600">COMO VOCÊ IMAGINA</span>
+              </MarkerHighlight>
+            </span>
           </h2>
           
-          <p className="mt-3.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body leading-relaxed max-w-xl mx-auto">
-            Você se dedica, tem conteúdo bom, mas visualmente... algo não funciona. E isso te frustra.
+          <p className="mt-4 text-sm sm:text-base text-neutral-600 font-sans-body leading-relaxed max-w-xl mx-auto">
+            Você posta, testa, apaga, muda… mas ainda sente que falta algo.
+            <span className="block mt-1.5 text-neutral-700 font-medium">
+              O resultado? Stories sem harmonia, sem personalidade e sem aquele visual que chama atenção.
+            </span>
           </p>
         </div>
 
@@ -63,11 +69,11 @@ export const PainPointsSection: React.FC = () => {
                     <div className="w-9 h-9 rounded-xl bg-white text-rose-600 flex items-center justify-center border border-neutral-200/60 shadow-2xs">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-[10px] font-semibold text-neutral-600 bg-white border border-neutral-200/60 px-2.5 py-0.5 rounded-full font-heading">
-                      {item.tag}
+                    <span className="text-xs font-bold text-rose-600 bg-white border border-rose-200/60 px-2.5 py-0.5 rounded-full font-heading">
+                      {item.number}
                     </span>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-[#1D1D1F] font-heading mb-1.5">
+                  <h3 className="text-sm sm:text-base font-bold text-[#1D1D1F] font-heading mb-1.5 uppercase tracking-wide">
                     {item.title}
                   </h3>
                   <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-sans-body">
@@ -83,11 +89,11 @@ export const PainPointsSection: React.FC = () => {
         <div className="mt-8 bg-[#1D1D1F] text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-center shadow-lg relative overflow-hidden">
           <div className="relative z-10 max-w-xl mx-auto">
             <p className="text-base sm:text-lg font-medium leading-relaxed font-sans-body">
-              “Eu só queria conseguir deixar meus Stories bonitos sem precisar entender de design ou passar vários minutos editando.”
+              “Eu só queria postar algo bonito sem perder tempo procurando elemento, fonte e inspiração toda vez.”
             </p>
-            <div className="mt-4 pt-3.5 border-t border-white/10 inline-flex items-center gap-1.5 text-xs text-rose-300 font-heading">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Criado para transformar qualquer foto comum em menos de 1 minuto</span>
+            <div className="mt-4 pt-3.5 border-t border-white/10 inline-flex items-center justify-center gap-1.5 text-xs text-rose-300 font-heading">
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
+              <span>Foi por isso que criamos um pack pronto para transformar Stories comuns em posts mais bonitos em poucos segundos.</span>
             </div>
           </div>
         </div>
