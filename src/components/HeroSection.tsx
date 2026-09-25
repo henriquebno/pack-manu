@@ -37,8 +37,27 @@ export const HeroSection: React.FC = () => {
             Sem precisar criar do zero ou perder tempo procurando GIFs.
           </p>
 
+          {/* Hero Visual Mockup */}
+          <div className="relative mt-6 sm:mt-8 w-full max-w-3xl mx-auto">
+            <div className="relative mx-auto rounded-3xl p-2 bg-white/70 shadow-xl shadow-black/5 border border-black/[0.04]">
+              <picture>
+                <source media="(max-width: 640px)" srcSet="/images/hero-mockup-new-mobile.webp" type="image/webp" width={640} height={640} />
+                <img
+                  src="/images/hero-mockup-new.webp"
+                  alt="Pack Manu Stories Mockup em smartphones"
+                  className="w-full h-auto rounded-2xl object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width={1254}
+                  height={1254}
+                />
+              </picture>
+            </div>
+          </div>
+
           {/* CTA Buttons & Microcopy */}
-          <div className="mt-6 flex flex-col items-center w-full max-w-md">
+          <div className="mt-8 flex flex-col items-center w-full max-w-md">
             <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
               <a
                 id="hero-cta-btn"
@@ -64,25 +83,6 @@ export const HeroSection: React.FC = () => {
             <p className="mt-3 text-[11px] text-neutral-500 font-sans-body">
               A partir de <strong className="text-neutral-800 font-semibold">R$ 9,99</strong> • pagamento único
             </p>
-          </div>
-
-          {/* Hero Visual Mockup */}
-          <div className="relative mt-10 sm:mt-12 w-full max-w-3xl mx-auto">
-            <div className="relative mx-auto rounded-3xl p-2 bg-white/70 shadow-xl shadow-black/5 border border-black/[0.04]">
-              <picture>
-                <source media="(max-width: 640px)" srcSet="/images/hero-mockup-new-mobile.webp" type="image/webp" width={640} height={640} />
-                <img
-                  src="/images/hero-mockup-new.webp"
-                  alt="Pack Manu Stories Mockup em smartphones"
-                  className="w-full h-auto rounded-2xl object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  width={1254}
-                  height={1254}
-                />
-              </picture>
-            </div>
           </div>
 
         </div>
