@@ -15,7 +15,7 @@ export const HeroSection: React.FC = () => {
           <div className="inline-flex items-center gap-1.5 bg-white border border-neutral-200/80 shadow-xs px-3.5 py-1.5 rounded-full mb-5">
             <span className="text-amber-500 text-xs">✨</span>
             <span className="text-[11px] sm:text-xs font-semibold text-neutral-800 font-heading tracking-wide">
-              +15.000 figurinhas para seus Stories
+              Mais vendido do Brasil
             </span>
           </div>
 
