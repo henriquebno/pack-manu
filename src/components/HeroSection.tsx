@@ -64,7 +64,7 @@ export const HeroSection: React.FC = () => {
                 href="#inspiracoes"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('inspiracoes')?.scrollIntoView({ behavior: 'smooth' });
+                  document.getElementById('inspiracoes')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
                 className="w-full sm:w-auto flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3.5 px-6 rounded-full shadow-md shadow-rose-500/20 transition-all text-center flex items-center justify-center gap-2 group font-heading cursor-pointer"
               >
