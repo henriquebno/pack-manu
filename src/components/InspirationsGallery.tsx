@@ -72,7 +72,7 @@ export const InspirationsGallery: React.FC = () => {
             </span>
           </h2>
           <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
-            Mais de 500 stories prontos pra você usar em qualquer momento do seu dia.
+            Inspirações visuais para você transformar seus stories com as figurinhas do Pack Manu.
           </p>
         </div>
 
