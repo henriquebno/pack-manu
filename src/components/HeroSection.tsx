@@ -20,10 +20,10 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl text-[#1D1D1F] tracking-wide leading-[1.05] max-w-3xl font-heading uppercase">
-            Deixe seus Stories mais{' '}
-            <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">bonitos</span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#1D1D1F] tracking-wide leading-tight sm:leading-[1.15] max-w-4xl font-heading uppercase text-balance">
+            Transforme qualquer story em um conteúdo bonito, profissional e{' '}
+            <span className="relative inline-block text-rose-600 whitespace-nowrap">
+              <span className="relative z-10">impossível de ignorar</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>{' '}
             em poucos cliques.
