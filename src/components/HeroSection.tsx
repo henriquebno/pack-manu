@@ -20,7 +20,7 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#1D1D1F] tracking-wide leading-tight sm:leading-[1.15] max-w-4xl font-heading uppercase text-balance">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#1D1D1F] tracking-wide leading-[1.12] max-w-3xl font-heading uppercase text-balance">
             Transforme qualquer story em um conteúdo bonito, profissional e{' '}
             <span className="relative inline-block text-rose-600 whitespace-nowrap">
               <span className="relative z-10">impossível de ignorar</span>
@@ -37,8 +37,8 @@ export const HeroSection: React.FC = () => {
             Sem precisar criar do zero ou perder tempo procurando GIFs.
           </p>
 
-          {/* Hero Visual Mockup */}
-          <div className="relative mt-6 sm:mt-8 w-full max-w-3xl mx-auto">
+          {/* Hero Visual Mockup - placed above CTA button as requested */}
+          <div className="relative mt-8 sm:mt-10 w-full max-w-3xl mx-auto">
             <div className="relative mx-auto rounded-3xl p-2 bg-white/70 shadow-xl shadow-black/5 border border-black/[0.04]">
               <picture>
                 <source media="(max-width: 640px)" srcSet="/images/hero-mockup-new-mobile.webp" type="image/webp" width={640} height={640} />
@@ -56,16 +56,12 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* CTA Buttons & Microcopy */}
+          {/* CTA Buttons & Microcopy - placed below mockup */}
           <div className="mt-8 flex flex-col items-center w-full max-w-md">
             <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
               <a
                 id="hero-cta-btn"
                 href="#inspiracoes"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('inspiracoes')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
                 className="w-full sm:w-auto flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3.5 px-6 rounded-full shadow-md shadow-rose-500/20 transition-all text-center flex items-center justify-center gap-2 group font-heading cursor-pointer"
               >
                 <span>QUERO ACESSAR AS +15.000 FIGURINHAS</span>

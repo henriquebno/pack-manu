@@ -38,7 +38,7 @@ export const InspirationsGallery: React.FC = () => {
   const row2 = ALL_STORIES_CAROUSEL.slice(half);
 
   return (
-    <section className="py-14 md:py-24 bg-[#FAF9F6] border-t border-neutral-200/60 overflow-hidden relative">
+    <section id="inspiracoes" className="py-14 md:py-24 bg-[#FAF9F6] border-t border-neutral-200/60 overflow-hidden relative scroll-mt-6">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Narrative Box */}
@@ -62,7 +62,7 @@ export const InspirationsGallery: React.FC = () => {
         </div>
 
         {/* Gallery Header */}
-        <div id="inspiracoes" className="text-center max-w-2xl mx-auto mb-8 scroll-mt-6 sm:scroll-mt-10">
+        <div className="text-center max-w-2xl mx-auto mb-8">
           <SectionBadge>Inspirações Reais</SectionBadge>
           <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
             Veja como ficam{' '}
@@ -72,7 +72,7 @@ export const InspirationsGallery: React.FC = () => {
             </span>
           </h2>
           <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
-            Inspirações visuais para você transformar seus stories com as figurinhas do Pack Manu.
+            Mais de 500 stories prontos pra você usar em qualquer momento do seu dia.
           </p>
         </div>
 

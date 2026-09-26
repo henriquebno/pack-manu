@@ -39,14 +39,14 @@ export default function App() {
         {/* 2. Hero Section */}
         <HeroSection />
 
-        {/* 3. Before & After Transformation */}
+        {/* 3. Niches & Daily Moments */}
+        <NichesSection />
+
+        {/* 4. Before & After Transformation */}
         <BeforeAfterSection />
 
-        {/* 4. Pain Points / Identification */}
+        {/* 5. Pain Points / Identification */}
         <PainPointsSection />
-
-        {/* 5. Niches & Daily Moments */}
-        <NichesSection />
 
         {/* 6. 3-Step How It Works */}
         <HowItWorksSection />

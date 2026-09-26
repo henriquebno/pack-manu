@@ -67,6 +67,12 @@ export const TestimonialsSection: React.FC = () => {
               className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200/80 shadow-2xs hover:border-neutral-300 transition-all flex flex-col justify-between"
             >
               <div>
+                {t.tag && (
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-rose-600 bg-rose-50 border border-rose-200/60 px-2.5 py-0.5 rounded-full mb-3 font-heading">
+                    {t.tag}
+                  </span>
+                )}
+
                 <div className="flex items-center gap-1 mb-3 text-amber-400">
                   {[...Array(t.stars)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
