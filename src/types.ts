@@ -23,6 +23,7 @@ export interface BonusItem {
   description: string;
   originalPrice: string;
   iconName: string;
+  image?: string;
 }
 
 export interface FAQItem {
