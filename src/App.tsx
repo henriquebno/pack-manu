@@ -15,7 +15,6 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { FeaturesLibrarySection } from './components/FeaturesLibrarySection';
 import { InspirationsGallery } from './components/InspirationsGallery';
 import { BonusesSection } from './components/BonusesSection';
-import { TargetAudienceSection } from './components/TargetAudienceSection';
 import { PricingSection } from './components/PricingSection';
 import { GuaranteeSection } from './components/GuaranteeSection';
 import { CreatorSection } from './components/CreatorSection';
@@ -66,10 +65,7 @@ export default function App() {
         {/* 11. Exclusive Bonuses */}
         <BonusesSection />
 
-        {/* 12. Target Audience (Is for you / Not for you) */}
-        <TargetAudienceSection />
-
-        {/* 13. Pricing Plans (Oferta Especial) */}
+        {/* 12. Pricing Plans (Oferta Especial) */}
         <PricingSection />
 
         {/* 14. 7-Day Unconditional Guarantee */}

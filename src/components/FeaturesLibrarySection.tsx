@@ -81,7 +81,7 @@ export const FeaturesLibrarySection: React.FC = () => {
             prontos para transformar seus Stories
           </h2>
           <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
-            Uma coleção completa, curada especialmente para mulheres que valorizam estética, organização e elegância.
+            Uma biblioteca completa de figurinhas e elementos selecionados para você nunca mais ficar sem ideia na hora de postar.
           </p>
         </div>
 

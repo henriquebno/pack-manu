@@ -21,12 +21,11 @@ export const HeroSection: React.FC = () => {
 
           {/* Main Headline */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#1D1D1F] tracking-wide leading-[1.12] max-w-3xl font-heading uppercase text-balance">
-            Transforme qualquer story em um conteúdo bonito, profissional e{' '}
+            Transforme qualquer foto em um Story bonito, elegante e{' '}
             <span className="relative inline-block text-rose-600 whitespace-nowrap">
-              <span className="relative z-10">impossível de ignorar</span>
+              <span className="relative z-10">com a sua personalidade</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
-            </span>{' '}
-            em poucos cliques.
+            </span>
           </h1>
 
           {/* Subtitle */}

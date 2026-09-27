@@ -19,10 +19,10 @@ export const BeforeAfterSection: React.FC = () => {
             A Transformação
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-tight">
-            A mesma foto. Só que com o{' '}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-tight text-balance">
+            De uma foto comum para um story que{' '}
             <span className="relative inline-block text-rose-600">
-              <span className="relative z-10">Pack Manu Stories</span>
+              <span className="relative z-10">dá vontade de postar ✨</span>
               <UnderlineStroke className="-bottom-1" color="#e11d48" />
             </span>
           </h2>
