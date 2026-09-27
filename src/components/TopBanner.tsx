@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Flame } from 'lucide-react';
 
 export const TopBanner: React.FC = () => {
+  const formattedDate = useMemo(() => {
+    const today = new Date();
+    const day = today.getDate();
+    const months = [
+      'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+      'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+    ];
+    return `${day} de ${months[today.getMonth()]}`;
+  }, []);
+
   return (
     <div className="bg-[#121214] text-[#FAF6F0] py-2 px-4 text-xs font-medium border-b border-white/10 sticky top-0 z-40 backdrop-blur-md bg-opacity-95 transition-all">
       <div className="max-w-5xl mx-auto flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-center">
         <span className="text-neutral-200 text-[11px] sm:text-xs font-sans-body">
-          +47 mil pessoas já fazem stories que chamam atenção. <strong className="text-white">Falta você.</strong>
+          ⚡ Desconto válido apenas hoje, <strong className="text-white underline decoration-rose-500 underline-offset-2">{formattedDate}</strong>! Aproveite antes que encerre.
         </span>
         <a
           href="#oferta"
