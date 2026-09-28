@@ -30,7 +30,7 @@ export const GuaranteeSection: React.FC = () => {
               <span>Risco Zero</span>
             </div>
             
-            <h2 className="text-xl sm:text-2xl text-[#1D1D1F] font-heading uppercase tracking-wide mb-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] font-heading tracking-tight mb-2.5">
               Garantia de{' '}
               <span className="relative inline-block text-rose-600">
                 <span className="relative z-10">15 dias</span>
@@ -38,10 +38,10 @@ export const GuaranteeSection: React.FC = () => {
               </span>
             </h2>
             
-            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans-body">
+            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-sans-body">
               Se por qualquer motivo você não ficar satisfeita com o Pack Manu Stories, basta enviar um e-mail em até 15 dias após a compra e devolvemos <strong>100% do seu investimento</strong>. Sem perguntas, sem burocracia. Simples assim.
             </p>
-            <p className="text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body mt-2">
+            <p className="text-sm font-semibold text-neutral-800 font-sans-body mt-2">
               Seu único risco é não experimentar.
             </p>
           </div>

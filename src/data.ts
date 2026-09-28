@@ -123,7 +123,7 @@ export const BONUSES: BonusItem[] = [
   {
     id: 1,
     title: 'Figurinhas Exclusivas',
-    description: '+3.000 figurinhas únicas e modernas que você não encontra em lugar nenhum — prontas para transformar qualquer story em conteúdo de impacto.',
+    description: '+3.000 figurinhas extras e modernas para dar destaque imediato a qualquer foto.',
     originalPrice: 'R$ 47',
     iconName: 'Sparkles',
     image: '/images/bonus-1-stickers.webp',
@@ -131,7 +131,7 @@ export const BONUSES: BonusItem[] = [
   {
     id: 2,
     title: '+200 Sombras Elegantes',
-    description: 'Efeitos de sombra profissionais que elevam o visual dos seus stories instantaneamente. O detalhe que separa um perfil amador de um perfil que impressiona.',
+    description: 'Efeitos de sombra profissionais para dar profundidade e acabamento refinado aos Stories.',
     originalPrice: 'R$ 37',
     iconName: 'Box',
     image: '/images/bonus-2-shadows.webp',
@@ -139,7 +139,7 @@ export const BONUSES: BonusItem[] = [
   {
     id: 3,
     title: 'Templates Prontos no Canva',
-    description: 'Modelos de story já montados e fáceis de personalizar. Edite em segundos e poste com a confiança de quem tem uma designer no time.',
+    description: 'Modelos prontos e 100% editáveis no Canva gratuito para postar em segundos.',
     originalPrice: 'R$ 67',
     iconName: 'BookOpen',
     image: '/images/bonus-3-canva.webp',
@@ -147,7 +147,7 @@ export const BONUSES: BonusItem[] = [
   {
     id: 4,
     title: 'Suporte Prioritário no WhatsApp',
-    description: 'Ficou com alguma dúvida? Nossa equipe responde rapidinho pelo WhatsApp. Você nunca vai travar na hora de usar suas figurinhas.',
+    description: 'Atendimento rápido e direto no WhatsApp para tirar dúvidas e ajudar na aplicação.',
     originalPrice: 'R$ 47',
     iconName: 'MessageSquare',
     image: '/images/bonus-4-whatsapp.webp',
@@ -178,31 +178,19 @@ export const STORIES_GALLERY: StoryItem[] = [
 export const FAQ_DATA: FAQItem[] = [
   {
     question: 'Como vou receber meu acesso?',
-    answer: 'Assim que o pagamento for aprovado, você receberá as instruções de acesso completas e o link da plataforma no e-mail utilizado durante a compra. Se pagar via Pix ou Cartão, a liberação é imediata em menos de 2 minutos.',
+    answer: 'Assim que o pagamento for aprovado, você receberá o link e as instruções completas no seu e-mail. No Pix ou Cartão, a liberação é imediata em menos de 2 minutos.',
   },
   {
-    question: 'Preciso saber editar?',
-    answer: 'Não. O material foi pensado justamente para quem quer criar Stories bonitos sem precisar dominar ferramentas profissionais de edição. Basta copiar a figurinha e colar direto no Story do seu Instagram, sem complicação.',
+    question: 'Preciso saber editar ou ter aplicativo pago?',
+    answer: 'Não. Você não precisa de Canva Pro nem de programas pagos ou conhecimento de design. Basta copiar a figurinha da sua galeria e colar direto no Story do Instagram.',
   },
   {
-    question: 'Posso usar as figurinhas quantas vezes quiser?',
-    answer: 'Sim! Depois de adquirir o produto, você poderá utilizar todos os elementos sempre que quiser no seu dia a dia, de acordo com os termos de uso do produto.',
+    question: 'Funciona no meu celular (Android e iPhone)?',
+    answer: 'Sim, 100%! Os arquivos são em formato PNG transparente de alta definição, totalmente compatíveis com qualquer modelo de iPhone (iOS) e Android (Samsung, Motorola, Xiaomi, etc.).',
   },
   {
-    question: 'O acesso é vitalício?',
-    answer: 'Sim. Sua compra libera acesso vitalício a todo o conteúdo incluído na oferta, sem mensalidades ou renovações futuras.',
-  },
-  {
-    question: 'Funciona no Android e iPhone?',
-    answer: 'Sim, 100%! Os arquivos são disponibilizados em PNG com fundo transparente em alta resolução, perfeitamente compatíveis com iOS (iPhone) e Android (Samsung, Xiaomi, Motorola, etc.). Disponibilizamos também um tutorial passo a passo em vídeo.',
-  },
-  {
-    question: 'Quando recebo?',
-    answer: 'O acesso é liberado imediatamente após a confirmação do pagamento pelo sistema seguro da Ticto.',
-  },
-  {
-    question: 'Tenho garantia?',
-    answer: 'Sim. Sua compra conta com garantia incondicional de 15 dias. Se você entrar e sentir que não é para você, basta solicitar o reembolso e 100% do seu dinheiro será devolvido sem perguntas.',
+    question: 'O acesso é vitalício ou tem mensalidade?',
+    answer: 'O acesso é vitalício com pagamento único. Você paga uma única vez e tem acesso para sempre, sem nenhuma mensalidade ou cobrança recorrente.',
   },
 ];
 

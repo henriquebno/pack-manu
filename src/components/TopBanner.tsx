@@ -13,9 +13,9 @@ export const TopBanner: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-[#121214] text-[#FAF6F0] py-2 px-4 text-xs font-medium border-b border-white/10 sticky top-0 z-40 backdrop-blur-md bg-opacity-95 transition-all">
+    <div className="bg-[#121214] text-[#FAF6F0] py-2.5 px-4 text-xs sm:text-sm font-medium border-b border-white/10 sticky top-0 z-40 backdrop-blur-md bg-opacity-95 transition-all">
       <div className="max-w-5xl mx-auto flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-center">
-        <span className="text-neutral-200 text-[11px] sm:text-xs font-sans-body">
+        <span className="text-neutral-200 text-xs sm:text-sm font-sans-body">
           ⚡ Desconto válido apenas hoje, <strong className="text-white underline decoration-rose-500 underline-offset-2">{formattedDate}</strong>! Aproveite antes que encerre.
         </span>
         <a

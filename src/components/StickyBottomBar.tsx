@@ -44,9 +44,9 @@ export const StickyBottomBar: React.FC = () => {
 
         {/* Mobile quick text */}
         <div className="sm:hidden text-left pl-1">
-          <span className="text-[10px] text-neutral-400 line-through font-sans-body">De R$ 67,90</span>
-          <p className="text-xs font-bold text-[#1D1D1F] leading-tight font-heading">
-            A partir de <span className="text-rose-600">R$ 9,99</span>
+          <span className="text-[11px] text-neutral-400 line-through font-sans-body">De R$ 67,90</span>
+          <p className="text-sm font-bold text-[#1D1D1F] leading-tight font-heading">
+            A partir de <span className="text-rose-600 font-extrabold">R$ 9,99</span>
           </p>
         </div>
 

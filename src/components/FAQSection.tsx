@@ -17,14 +17,14 @@ export const FAQSection: React.FC = () => {
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
           <SectionBadge>Dúvidas Comuns</SectionBadge>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1D1D1F] font-heading tracking-tight leading-snug sm:leading-[1.15]">
             Perguntas{' '}
             <span className="relative inline-block text-rose-600">
               <span className="relative z-10">Frequentes</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>
           </h2>
-          <p className="mt-2 text-xs sm:text-sm text-neutral-600 font-sans-body">
+          <p className="mt-3 text-sm sm:text-base text-neutral-600 font-sans-body">
             Tudo o que você precisa saber antes de começar:
           </p>
         </div>
@@ -40,7 +40,7 @@ export const FAQSection: React.FC = () => {
               >
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full text-left py-4 px-4 sm:px-5 flex items-center justify-between gap-3 font-semibold text-xs sm:text-sm text-[#1D1D1F] hover:text-rose-600 transition-colors cursor-pointer font-heading"
+                  className="w-full text-left py-4 px-4 sm:px-5 flex items-center justify-between gap-3 font-semibold text-sm sm:text-base text-[#1D1D1F] hover:text-rose-600 transition-colors cursor-pointer"
                   aria-expanded={isOpen}
                 >
                   <span className="flex items-center gap-2.5">
@@ -57,7 +57,7 @@ export const FAQSection: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 sm:px-5 pb-4 pt-1 text-neutral-600 text-xs sm:text-sm leading-relaxed border-t border-neutral-100 font-sans-body">
+                  <div className="px-4 sm:px-5 pb-4 pt-1 text-neutral-600 text-sm sm:text-base leading-relaxed border-t border-neutral-100 font-sans-body">
                     <p>{faq.answer}</p>
                   </div>
                 )}

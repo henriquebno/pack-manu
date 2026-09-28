@@ -20,7 +20,7 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#1D1D1F] tracking-wide leading-[1.12] max-w-3xl font-heading uppercase text-balance">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold text-[#1D1D1F] tracking-tight leading-[1.18] sm:leading-[1.15] max-w-3xl font-heading text-balance">
             Transforme qualquer foto em um Story bonito, elegante e{' '}
             <span className="relative inline-block text-rose-600 whitespace-nowrap">
               <span className="relative z-10">com a sua personalidade</span>
@@ -29,10 +29,10 @@ export const HeroSection: React.FC = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-3.5 text-xs sm:text-sm md:text-base text-neutral-600 max-w-xl font-sans-body leading-relaxed">
+          <p className="mt-3.5 text-sm sm:text-base md:text-lg text-neutral-600 max-w-xl font-sans-body leading-relaxed">
             Tenha +15.000 figurinhas e elementos prontos para usar em Stories de trabalho, rotina, academia, fé, beleza, comida, viagens e muito mais.
           </p>
-          <p className="mt-1.5 text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body">
+          <p className="mt-2 text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body">
             Sem precisar criar do zero ou perder tempo procurando GIFs.
           </p>
 

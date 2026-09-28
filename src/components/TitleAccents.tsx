@@ -94,7 +94,7 @@ export const SectionBadge: React.FC<{
     <div className="flex items-center justify-center gap-2.5 mb-3">
       <span className="h-px w-6 sm:w-10 bg-gradient-to-r from-transparent to-rose-300/80" />
       <span
-        className={`inline-block text-[11px] sm:text-xs uppercase tracking-[0.15em] font-semibold border px-3 py-0.5 rounded-full font-heading ${badgeClassName}`}
+        className={`inline-block text-[11px] sm:text-xs uppercase tracking-wider font-semibold border px-3 py-1 rounded-full font-sans-body shadow-2xs ${badgeClassName}`}
       >
         {children}
       </span>

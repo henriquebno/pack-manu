@@ -11,7 +11,7 @@ export const TestimonialsSection: React.FC = () => {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <SectionBadge>Prova Social</SectionBadge>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1D1D1F] font-heading tracking-tight leading-snug sm:leading-[1.15]">
             Milhares de mulheres já{' '}
             <span className="relative inline-block text-rose-600">
               <span className="relative z-10">transformaram ✨</span>
@@ -19,7 +19,7 @@ export const TestimonialsSection: React.FC = () => {
             </span>{' '}
             seus Stories
           </h2>
-          <p className="mt-2.5 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body">
+          <p className="mt-3 text-sm sm:text-base text-neutral-600 font-sans-body">
             Veja o que elas estão dizendo sobre o Pack Manu Stories:
           </p>
         </div>

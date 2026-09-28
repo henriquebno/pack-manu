@@ -18,14 +18,14 @@ export const BonusesSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <SectionBadge>Bônus Exclusivos</SectionBadge>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl text-[#1D1D1F] font-heading uppercase tracking-wide leading-[1.06] text-balance">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1D1D1F] font-heading tracking-tight leading-snug sm:leading-[1.15] text-balance">
             E você ainda recebe{' '}
             <span className="relative inline-block text-rose-600">
               <span className="relative z-10">4 bônus especiais 🎁</span>
               <UnderlineStroke className="-bottom-1 sm:-bottom-1.5" color="#e11d48" />
             </span>
           </h2>
-          <p className="mt-3 text-xs sm:text-sm md:text-base text-neutral-600 font-sans-body leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base md:text-lg text-neutral-600 font-sans-body leading-relaxed">
             Para você conseguir aproveitar ainda mais seu pack, também vai receber:
           </p>
         </div>
