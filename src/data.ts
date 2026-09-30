@@ -1,9 +1,9 @@
 import { BeforeAfterItem, TestimonialItem, BonusItem, FAQItem, StickerItem, StoryItem } from './types';
 
 export const CHECKOUT_LINKS = {
-  essencial: '/go/essencial.html',
-  completo: '/go/completo.html',
-  completoOferta27: '/go/completo-oferta.html',
+  essencial: '/go/essencial.html?checkout=true',
+  completo: '/go/completo.html?checkout=true',
+  completoOferta27: '/go/completo-oferta.html?checkout=true',
 };
 
 export const getCheckoutUrlWithUtms = (url: string): string => {
