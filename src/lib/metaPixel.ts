@@ -13,5 +13,5 @@ interface CheckoutClickData {
 }
 
 export const trackCheckoutClick = (_data: CheckoutClickData) => {
-  // Pixel do Facebook removido conforme solicitado. Apenas Utmify ativo.
+  // Nenhum evento disparado no clique do botão. O IC é capturado pelo pixel no checkout quando o cliente insere os dados.
 };

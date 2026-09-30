@@ -26,74 +26,9 @@
     </noscript>
 
     <script>
-      // 1. Ensure window.fetch has both getter and setter so scripts attempting to wrap fetch do not fail on read-only getter
+      // Sanitize console arguments so logging DOM nodes doesn't trigger circular JSON serialization in iframe bridges
       (function() {
         try {
-          var win = typeof window !== 'undefined' ? window : globalThis;
-          var curFetch = win.fetch ? win.fetch.bind(win) : null;
-          var descriptor = {
-            get: function() {
-              return curFetch;
-            },
-            set: function(newFetch) {
-              curFetch = newFetch;
-            },
-            configurable: true,
-            enumerable: true
-          };
-          try {
-            Object.defineProperty(win, 'fetch', descriptor);
-          } catch (e) {}
-          try {
-            if (typeof Window !== 'undefined' && Window.prototype) {
-              Object.defineProperty(Window.prototype, 'fetch', descriptor);
-            }
-          } catch (e) {}
-        } catch (err) {}
-      })();
-
-      // 2. Prevent "Converting circular structure to JSON" from tracking scripts logging DOM elements with React Fibers
-      (function() {
-        try {
-          var origStringify = JSON.stringify;
-          JSON.stringify = function(value, replacer, space) {
-            var seen = new WeakSet();
-            function circularReplacer(key, val) {
-              if (typeof val === 'object' && val !== null) {
-                if (typeof Node !== 'undefined' && val instanceof Node) {
-                  return {
-                    nodeType: val.nodeType,
-                    tagName: val.tagName,
-                    id: val.id,
-                    className: val.className
-                  };
-                }
-                if (typeof Window !== 'undefined' && val instanceof Window) {
-                  return '[Window]';
-                }
-                if (seen.has(val)) {
-                  return '[Circular]';
-                }
-                seen.add(val);
-              }
-              if (typeof replacer === 'function') {
-                return replacer.call(this, key, val);
-              }
-              return val;
-            }
-
-            if (Array.isArray(replacer)) {
-              return origStringify.call(this, value, replacer, space);
-            }
-
-            try {
-              return origStringify.call(this, value, circularReplacer, space);
-            } catch (e) {
-              return '"[Circular]"';
-            }
-          };
-
-          // Sanitize console arguments so logging DOM nodes doesn't trigger circular JSON serialization in iframe bridges
           var methods = ['log', 'info', 'warn', 'error', 'debug'];
           methods.forEach(function(m) {
             if (typeof console !== 'undefined' && console[m]) {
@@ -102,20 +37,9 @@
                 var safeArgs = [];
                 for (var i = 0; i < arguments.length; i++) {
                   var a = arguments[i];
-                  if (a && typeof a === 'object') {
-                    if ((typeof Node !== 'undefined' && a instanceof Node) || a.nodeType) {
-                      safeArgs.push('[Element ' + (a.tagName || 'node') + (a.id ? '#' + a.id : '') + ']');
-                      continue;
-                    }
-                    if (Array.isArray(a)) {
-                      safeArgs.push(a.map(function(item) {
-                        if (item && typeof item === 'object' && ((typeof Node !== 'undefined' && item instanceof Node) || item.nodeType)) {
-                          return '[Element ' + (item.tagName || 'node') + (item.id ? '#' + item.id : '') + ']';
-                        }
-                        return item;
-                      }));
-                      continue;
-                    }
+                  if (a && typeof a === 'object' && ((typeof Node !== 'undefined' && a instanceof Node) || a.nodeType)) {
+                    safeArgs.push('[Element ' + (a.tagName || 'node') + (a.id ? '#' + a.id : '') + ']');
+                    continue;
                   }
                   safeArgs.push(a);
                 }
@@ -126,6 +50,21 @@
         } catch (e) {}
       })();
     </script>
+
+    <!-- Meta Pixel Code (PageView ONLY on Landing Page) -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '956876377415583');
+      fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
 
     <!-- Script Utmify Pixel -->
     <script>
@@ -147,6 +86,12 @@
     ></script>
   </head>
   <body class="bg-[#FAF9F6] text-[#1D1D1F] antialiased selection:bg-rose-100 selection:text-rose-900">
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=956876377415583&ev=PageView&noscript=1"
+        alt=""
+      />
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
