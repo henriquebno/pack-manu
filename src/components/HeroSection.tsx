@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { UnderlineStroke } from './TitleAccents';
+import { DemoVideoPlayer } from './DemoVideoPlayer';
 
 export const HeroSection: React.FC = () => {
   return (
@@ -32,27 +33,13 @@ export const HeroSection: React.FC = () => {
           <p className="mt-3.5 text-sm sm:text-base md:text-lg text-neutral-600 max-w-xl font-sans-body leading-relaxed">
             Tenha +15.000 figurinhas e elementos prontos para usar em Stories de trabalho, rotina, academia, fé, beleza, comida, viagens e muito mais.
           </p>
-          <p className="mt-2 text-xs sm:text-sm font-semibold text-neutral-800 font-sans-body">
-            Sem precisar criar do zero ou perder tempo procurando GIFs.
+          <p className="mt-4 text-sm sm:text-base font-semibold text-neutral-800 font-sans-body">
+            Veja como funciona 👇🏼
           </p>
 
-          {/* Hero Visual Mockup - placed above CTA button as requested */}
-          <div className="relative mt-8 sm:mt-10 w-full max-w-3xl mx-auto">
-            <div className="relative mx-auto rounded-3xl p-2 bg-white/70 shadow-xl shadow-black/5 border border-black/[0.04]">
-              <picture>
-                <source media="(max-width: 640px)" srcSet="/images/hero-mockup-new-mobile.webp" type="image/webp" width={640} height={640} />
-                <img
-                  src="/images/hero-mockup-new.webp"
-                  alt="Pack Manu Stories Mockup em smartphones"
-                  className="w-full h-auto rounded-2xl object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  width={1254}
-                  height={1254}
-                />
-              </picture>
-            </div>
+          {/* Hero Video Player (VTurb Style Stories format) - Demonstration of pack access */}
+          <div className="relative mt-8 sm:mt-10 w-full flex justify-center">
+            <DemoVideoPlayer videoId="xav7Ho6tYKw" />
           </div>
 
           {/* CTA Buttons & Microcopy - placed below mockup */}
