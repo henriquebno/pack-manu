@@ -5,7 +5,7 @@ import { DemoVideoPlayer } from './DemoVideoPlayer';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden pt-6 pb-12 md:pt-12 md:pb-20 bg-[#FAF9F6]">
+    <section id="hero-section" className="relative overflow-hidden pt-6 pb-12 md:pt-12 md:pb-20 bg-[#FAF9F6]">
       {/* Subtle decorative background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-rose-100/40 blur-3xl pointer-events-none -z-10 rounded-full" />
 

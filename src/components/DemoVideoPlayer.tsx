@@ -19,14 +19,6 @@ declare global {
           };
         }
       ) => YTPlayerInstance;
-      PlayerState?: {
-        UNSTARTED: number;
-        ENDED: number;
-        PLAYING: number;
-        PAUSED: number;
-        BUFFERING: number;
-        CUED: number;
-      };
     };
     onYouTubeIframeAPIReady?: () => void;
   }
@@ -57,7 +49,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Synchronize refs for event callbacks and interval loops
+  // Synchronize state with refs for event callbacks
   useEffect(() => {
     hasSoundRef.current = hasSound;
   }, [hasSound]);
@@ -66,22 +58,19 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // Initialize YouTube Iframe Player
   useEffect(() => {
     let isMounted = true;
     let pollInterval: ReturnType<typeof setInterval> | null = null;
+    let ytCheckInterval: ReturnType<typeof setInterval> | null = null;
 
-    const createPlayer = () => {
+    const initPlayer = () => {
       if (!isMounted || playerRef.current || !containerRef.current) return;
       if (!window.YT || !window.YT.Player) return;
 
-      const playerId = 'vturb-yt-iframe-slot';
-      let mountEl = document.getElementById(playerId);
-      if (!mountEl) {
-        mountEl = document.createElement('div');
-        mountEl.id = playerId;
-        containerRef.current.appendChild(mountEl);
-      }
+      const container = containerRef.current;
+      container.innerHTML = '<div id="vturb-yt-iframe-slot"></div>';
+      const mountEl = document.getElementById('vturb-yt-iframe-slot');
+      if (!mountEl) return;
 
       try {
         const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : undefined;
@@ -114,12 +103,11 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
 
               // 1 = PLAYING
               if (state === 1) {
-                setIsVideoPlaying(true);
+                setIsVideoPlaying(prev => (prev ? prev : true));
                 setIsPlaying(true);
               }
-              // 0 = ENDED
+              // 0 = ENDED -> Seamless instant rewind & replay
               else if (state === 0) {
-                // Immediate seamless loop fallback
                 try {
                   event.target.seekTo(0, true);
                   event.target.playVideo();
@@ -131,7 +119,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
               // 2 = PAUSED
               else if (state === 2) {
                 if (!hasSoundRef.current) {
-                  // In preview mode, ensure it keeps looping uninterrupted
+                  // Keep playing in muted preview mode
                   try {
                     event.target.playVideo();
                   } catch (e) {}
@@ -145,28 +133,37 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
       } catch (err) {}
     };
 
-    // Check if API is already loaded or wait for ready callback
-    if (window.YT && window.YT.Player) {
-      createPlayer();
-    } else {
-      const prevCallback = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        if (prevCallback) prevCallback();
-        createPlayer();
-      };
+    const loadApiAndInit = () => {
+      if (!isMounted || playerRef.current) return;
 
-      // Poll as a robust fallback
-      const readyTimer = setInterval(() => {
-        if (window.YT && window.YT.Player) {
-          clearInterval(readyTimer);
-          createPlayer();
+      if (window.YT && window.YT.Player) {
+        initPlayer();
+      } else {
+        if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+          const tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/iframe_api';
+          tag.async = true;
+          document.head.appendChild(tag);
         }
-      }, 100);
-    }
 
-    // High-frequency watchdog: enables 100% seamless zero-black-screen looping!
-    // By seeking back to 0.0s right before the video ends (duration - 0.35s),
-    // YouTube NEVER reaches ENDED, never flushes its buffer, and NEVER displays a black screen!
+        const prevCallback = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = () => {
+          if (prevCallback) prevCallback();
+          initPlayer();
+        };
+
+        ytCheckInterval = setInterval(() => {
+          if (window.YT && window.YT.Player) {
+            if (ytCheckInterval) clearInterval(ytCheckInterval);
+            initPlayer();
+          }
+        }, 100);
+      }
+    };
+
+    loadApiAndInit();
+
+    // High-precision loop watchdog (100ms): seamless loop without black screen
     pollInterval = setInterval(() => {
       const player = playerRef.current;
       if (!player) return;
@@ -174,12 +171,12 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
       try {
         if (typeof player.getCurrentTime === 'function') {
           const cur = player.getCurrentTime();
-          
-          if (cur > 0.05 && !isVideoPlaying) {
-            setIsVideoPlaying(true);
+
+          if (cur > 0.05) {
+            setIsVideoPlaying(prev => (prev ? prev : true));
           }
 
-          // If in silent loop mode, loop seamlessly before reaching the end
+          // Seek back to 0.00 right before end (0.35s) to avoid YouTube end-screen buffer
           if (!hasSoundRef.current && typeof player.getDuration === 'function') {
             const dur = player.getDuration();
             if (dur > 0 && cur >= dur - 0.35) {
@@ -188,7 +185,6 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           }
         }
 
-        // Safety check: if paused while in silent preview mode, wake it up
         if (!hasSoundRef.current && typeof player.getPlayerState === 'function') {
           const st = player.getPlayerState();
           if (st === 0 || st === 2) {
@@ -197,10 +193,11 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           }
         }
       } catch (e) {}
-    }, 80);
+    }, 100);
 
     return () => {
       isMounted = false;
+      if (ytCheckInterval) clearInterval(ytCheckInterval);
       if (pollInterval) clearInterval(pollInterval);
       if (playerRef.current && typeof playerRef.current.destroy === 'function') {
         try {
@@ -209,13 +206,14 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
         playerRef.current = null;
       }
     };
-  }, [videoId, isVideoPlaying]);
+  }, [videoId]);
 
   // Main VTurb interaction handler
   const handlePlayerClick = () => {
     const player = playerRef.current;
+
     if (!hasSound) {
-      // First click: start from 0:00 with full sound!
+      // First click: activate sound & restart from 0:00
       setHasSound(true);
       setIsPlaying(true);
       setIsVideoPlaying(true);
@@ -280,7 +278,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0"
         />
 
-        {/* Instant High-Resolution Local Poster: loads in <5ms so visitor NEVER sees a black screen */}
+        {/* Instant High-Resolution Local Poster: LCP element with explicit dimensions */}
         <div
           className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-500 ${
             isVideoPlaying ? 'opacity-0' : 'opacity-100'
@@ -292,6 +290,9 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
             className="w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"
+            decoding="async"
+            width={360}
+            height={640}
           />
         </div>
 

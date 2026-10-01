@@ -6,16 +6,25 @@ export const StickyBottomBar: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 600) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    };
+    const heroEl = document.getElementById('hero-section');
+    if (!heroEl) return;
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setVisible(!entry.isIntersecting);
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(heroEl);
+      return () => observer.disconnect();
+    }
+
+    const onScroll = () => {
+      setVisible(window.scrollY > 600);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   if (!visible) return null;
@@ -36,7 +45,7 @@ export const StickyBottomBar: React.FC = () => {
                 OFERTA
               </span>
             </p>
-            <p className="text-[11px] text-neutral-500 font-sans-body">
+            <p className="text-[11px] text-neutral-600 font-sans-body">
               A partir de <strong className="text-rose-600 font-bold">R$ 9,99</strong> no Pix ou Cartão
             </p>
           </div>
@@ -44,7 +53,7 @@ export const StickyBottomBar: React.FC = () => {
 
         {/* Mobile quick text */}
         <div className="sm:hidden text-left pl-1">
-          <span className="text-[11px] text-neutral-400 line-through font-sans-body">De R$ 67,90</span>
+          <span className="text-[11px] text-neutral-500 line-through font-sans-body">De R$ 67,90</span>
           <p className="text-sm font-bold text-[#1D1D1F] leading-tight font-heading">
             A partir de <span className="text-rose-600 font-extrabold">R$ 9,99</span>
           </p>

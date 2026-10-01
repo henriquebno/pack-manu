@@ -4,15 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-    <!-- Meta Pixel Code -->
+    <!-- Environment shim: ensure window.fetch has both getter and setter for tracking scripts (Meta Pixel, etc.) -->
+    <script>
+      (function() {
+        try {
+          var rawFetch = window.fetch;
+          var activeFetch = rawFetch ? rawFetch.bind(window) : undefined;
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return activeFetch;
+            },
+            set: function(fn) {
+              activeFetch = fn;
+            }
+          });
+        } catch (e) {
+          try {
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              var protoFetch = window.fetch;
+              Object.defineProperty(Window.prototype, 'fetch', {
+                configurable: true,
+                enumerable: true,
+                get: function() {
+                  return protoFetch;
+                },
+                set: function(fn) {
+                  protoFetch = fn;
+                }
+              });
+            }
+          } catch (err) {}
+        }
+      })();
+    </script>
+
+    <!-- Meta Pixel Code (Queue initialized synchronously, script execution deferred for TBT) -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      n.queue=[];
+      function loadFbq() {
+        if (t) return;
+        t=b.createElement(e);t.async=!0;t.src=v;
+        s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s);
+      }
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadFbq, { timeout: 1200 });
+      } else {
+        setTimeout(loadFbq, 800);
+      }
+      }(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '956876377415583');
       fbq('track', 'PageView');
@@ -26,55 +72,24 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Preload Video Poster for Zero Black Screen -->
+    <!-- Preload Critical LCP Video Poster for Instant Hero Render -->
     <link rel="preload" as="image" href="/video-poster-stories.jpg" fetchpriority="high" />
 
-    <!-- Preconnect for Video Player & Fonts -->
-    <link rel="preconnect" href="https://www.youtube.com">
-    <link rel="preconnect" href="https://i.ytimg.com">
+    <!-- Optimized Preconnect: Only critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://www.youtube.com/iframe_api" async></script>
 
-    <!-- Optimized Google Fonts with non-blocking async stylesheet -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <!-- Optimized Google Fonts: Only exact weights used (Plus Jakarta Sans) with font-display: swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
     </noscript>
 
-    <script>
-      // Sanitize console arguments so logging DOM nodes doesn't trigger circular JSON serialization in iframe bridges
-      (function() {
-        try {
-          var methods = ['log', 'info', 'warn', 'error', 'debug'];
-          methods.forEach(function(m) {
-            if (typeof console !== 'undefined' && console[m]) {
-              var origMethod = console[m];
-              console[m] = function() {
-                var safeArgs = [];
-                for (var i = 0; i < arguments.length; i++) {
-                  var a = arguments[i];
-                  if (a && typeof a === 'object' && ((typeof Node !== 'undefined' && a instanceof Node) || a.nodeType)) {
-                    safeArgs.push('[Element ' + (a.tagName || 'node') + (a.id ? '#' + a.id : '') + ']');
-                    continue;
-                  }
-                  safeArgs.push(a);
-                }
-                return origMethod.apply(this, safeArgs);
-              };
-            }
-          });
-        } catch (e) {}
-      })();
-    </script>
-
-    <!-- Script de UTMs Utmify -->
+    <!-- Script de UTMs Utmify (deferred) -->
     <script
       src="https://cdn.utmify.com.br/scripts/utms/latest.js"
       data-utmify-prevent-xcod-sck
       data-utmify-prevent-subids
-      async
       defer
     ></script>
   </head>

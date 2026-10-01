@@ -7,7 +7,7 @@
   }
 
   body {
-    font-family: 'Plus Jakarta Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #1D1D1F;
     background-color: #FAF9F6;
     overflow-x: hidden;
@@ -29,13 +29,8 @@
   letter-spacing: -0.015em;
 }
 
-.font-condensed {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  letter-spacing: -0.01em;
-}
-
 .font-sans-body {
-  font-family: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Apple-inspired smooth marquee scrolling animations */
@@ -67,15 +62,9 @@
   will-change: transform;
 }
 
-.animate-scroll-slow {
-  animation: scrollLeft 45s linear infinite;
-  will-change: transform;
-}
-
 /* Non-stop continuous animations - never pause on hover or touch */
 .animate-scroll-left,
-.animate-scroll-right,
-.animate-scroll-slow {
+.animate-scroll-right {
   animation-play-state: running !important;
 }
 
@@ -91,21 +80,6 @@
 
 .animate-cta-subtle {
   animation: pulse-subtle 3.5s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* Float with translate3d for GPU compositing */
-@keyframes subtle-float {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -5px, 0);
-  }
-}
-
-.animate-float {
-  animation: subtle-float 4s ease-in-out infinite;
   will-change: transform;
 }
 
