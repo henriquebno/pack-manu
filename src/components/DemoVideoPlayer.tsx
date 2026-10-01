@@ -51,22 +51,13 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Synchronize state with refs for callback access
-  useEffect(() => {
-    hasSoundRef.current = hasSound;
-  }, [hasSound]);
-
-  useEffect(() => {
-    isPlayingRef.current = isPlaying;
-  }, [isPlaying]);
-
   useEffect(() => {
     let isMounted = true;
     let pollInterval: ReturnType<typeof setInterval> | null = null;
     let ytCheckInterval: ReturnType<typeof setInterval> | null = null;
-    let fallbackTimer: ReturnType<typeof setTimeout> | null = null;
+    let initTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const createPlayer = (unmuted: boolean = false) => {
+    const createPlayer = () => {
       if (!isMounted || playerRef.current || !containerRef.current) return;
       if (!window.YT || !window.YT.Player) return;
 
@@ -82,7 +73,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           videoId,
           playerVars: {
             autoplay: 1,
-            mute: unmuted ? 0 : 1,
+            mute: hasSoundRef.current ? 0 : 1,
             controls: 0,
             disablekb: 1,
             fs: 0,
@@ -97,7 +88,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
             onReady: (event) => {
               if (!isMounted) return;
               try {
-                if (unmuted || hasSoundRef.current) {
+                if (hasSoundRef.current) {
                   event.target.unMute();
                   event.target.setVolume(100);
                   event.target.seekTo(0, true);
@@ -115,24 +106,27 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
               if (state === 1) {
                 setIsVideoPlaying(true);
                 setIsPlaying(true);
+                isPlayingRef.current = true;
               }
-              // 0 = ENDED -> Seamless instant rewind & replay
+              // 0 = ENDED -> Seamless instant replay loop
               else if (state === 0) {
                 try {
                   event.target.seekTo(0, true);
                   event.target.playVideo();
                 } catch (e) {}
                 setIsPlaying(true);
+                isPlayingRef.current = true;
               }
               // 2 = PAUSED
               else if (state === 2) {
                 if (!hasSoundRef.current) {
-                  // While muted in background preview, keep looping
+                  // If YouTube briefly paused during muted autoplay, keep playing
                   try {
                     event.target.playVideo();
                   } catch (e) {}
                 } else {
                   setIsPlaying(false);
+                  isPlayingRef.current = false;
                 }
               }
             },
@@ -141,12 +135,12 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
       } catch (err) {}
     };
 
-    const loadApiAndInit = (unmuted: boolean = false) => {
+    const loadApiAndInit = () => {
       if (!isMounted || playerRef.current || isInitializedRef.current) return;
       isInitializedRef.current = true;
 
       if (window.YT && window.YT.Player) {
-        createPlayer(unmuted);
+        createPlayer();
       } else {
         if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
           const tag = document.createElement('script');
@@ -158,72 +152,57 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
         const prevCallback = window.onYouTubeIframeAPIReady;
         window.onYouTubeIframeAPIReady = () => {
           if (prevCallback) prevCallback();
-          createPlayer(unmuted);
+          createPlayer();
         };
 
         ytCheckInterval = setInterval(() => {
           if (window.YT && window.YT.Player) {
             if (ytCheckInterval) clearInterval(ytCheckInterval);
-            createPlayer(unmuted);
+            createPlayer();
           }
-        }, 120);
+        }, 100);
       }
     };
 
-    // Initialize player on first user interaction or after 3.2s
-    const triggerInit = () => {
-      removeListeners();
-      loadApiAndInit(false);
-    };
+    // Pre-initialize player 500ms after mount: ready before the user clicks
+    initTimer = setTimeout(loadApiAndInit, 500);
 
-    const removeListeners = () => {
-      ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach((evt) => {
-        window.removeEventListener(evt, triggerInit);
-      });
-    };
-
-    ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach((evt) => {
-      window.addEventListener(evt, triggerInit, { once: true, passive: true });
-    });
-
-    fallbackTimer = setTimeout(triggerInit, 3200);
-
-    // High-precision loop watchdog (120ms): seamless loop without black screen
+    // Watchdog: handles seamless loop without black screen
     pollInterval = setInterval(() => {
       const player = playerRef.current;
       if (!player) return;
 
       try {
+        // If sound is active (user is actively watching with audio):
+        if (hasSoundRef.current) {
+          // Restart seamlessly when ended
+          if (typeof player.getPlayerState === 'function' && player.getPlayerState() === 0) {
+            player.seekTo(0, true);
+            player.playVideo();
+          }
+          return;
+        }
+
+        // Muted background preview loop:
         if (typeof player.getCurrentTime === 'function') {
           const cur = player.getCurrentTime();
-
           if (cur > 0.05) {
             setIsVideoPlaying(true);
           }
-
-          // Seek back to 0.00 right before end (0.35s) to avoid YouTube end-screen buffer
-          if (!hasSoundRef.current && typeof player.getDuration === 'function') {
+          // Rewind 0.35s before video ends to avoid YouTube end-screen buffer
+          if (typeof player.getDuration === 'function') {
             const dur = player.getDuration();
             if (dur > 0 && cur >= dur - 0.35) {
               player.seekTo(0, true);
             }
           }
         }
-
-        if (!hasSoundRef.current && typeof player.getPlayerState === 'function') {
-          const st = player.getPlayerState();
-          if (st === 0 || st === 2) {
-            player.seekTo(0, true);
-            player.playVideo();
-          }
-        }
       } catch (e) {}
-    }, 120);
+    }, 150);
 
     return () => {
       isMounted = false;
-      removeListeners();
-      if (fallbackTimer) clearTimeout(fallbackTimer);
+      if (initTimer) clearTimeout(initTimer);
       if (ytCheckInterval) clearInterval(ytCheckInterval);
       if (pollInterval) clearInterval(pollInterval);
       if (playerRef.current && typeof playerRef.current.destroy === 'function') {
@@ -235,96 +214,40 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
     };
   }, [videoId]);
 
-  // Main VTurb interaction handler
+  // Main VTurb interaction handler: instant, zero-stutter audio activation
   const handlePlayerClick = () => {
     const player = playerRef.current;
 
-    if (!hasSound) {
-      // First click: activate sound & restart from 0:00
+    if (!hasSoundRef.current) {
+      // Synchronously set ref FIRST to prevent any muted watchdog collision
+      hasSoundRef.current = true;
+      isPlayingRef.current = true;
       setHasSound(true);
       setIsPlaying(true);
       setIsVideoPlaying(true);
 
-      if (player) {
+      if (player && typeof player.playVideo === 'function') {
         try {
           player.unMute();
           player.setVolume(100);
           player.seekTo(0, true);
           player.playVideo();
         } catch (e) {}
-      } else {
-        // If clicked before idle timeout, immediately load API unmuted
-        if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
-          const tag = document.createElement('script');
-          tag.src = 'https://www.youtube.com/iframe_api';
-          tag.async = true;
-          document.head.appendChild(tag);
-        }
-
-        const checkApi = setInterval(() => {
-          if (window.YT && window.YT.Player && containerRef.current) {
-            clearInterval(checkApi);
-            const container = containerRef.current;
-            container.innerHTML = '<div id="vturb-yt-iframe-slot"></div>';
-            const mountEl = document.getElementById('vturb-yt-iframe-slot');
-            if (mountEl) {
-              const origin = typeof window !== 'undefined' ? window.location.origin : undefined;
-              playerRef.current = new window.YT.Player(mountEl, {
-                host: 'https://www.youtube-nocookie.com',
-                videoId,
-                playerVars: {
-                  autoplay: 1,
-                  mute: 0,
-                  controls: 0,
-                  disablekb: 1,
-                  fs: 0,
-                  rel: 0,
-                  modestbranding: 1,
-                  playsinline: 1,
-                  iv_load_policy: 3,
-                  showinfo: 0,
-                  origin,
-                },
-                events: {
-                  onReady: (event) => {
-                    try {
-                      event.target.unMute();
-                      event.target.setVolume(100);
-                      event.target.seekTo(0, true);
-                      event.target.playVideo();
-                    } catch (e) {}
-                  },
-                  onStateChange: (event) => {
-                    if (event.data === 1) {
-                      setIsVideoPlaying(true);
-                      setIsPlaying(true);
-                    } else if (event.data === 0) {
-                      try {
-                        event.target.seekTo(0, true);
-                        event.target.playVideo();
-                      } catch (e) {}
-                    } else if (event.data === 2) {
-                      setIsPlaying(false);
-                    }
-                  },
-                },
-              });
-            }
-          }
-        }, 100);
       }
     } else {
       // Subsequent clicks: toggle play / pause
-      if (isPlaying) {
+      if (isPlayingRef.current) {
+        isPlayingRef.current = false;
         setIsPlaying(false);
-        if (player) {
+        if (player && typeof player.pauseVideo === 'function') {
           try {
             player.pauseVideo();
           } catch (e) {}
         }
       } else {
+        isPlayingRef.current = true;
         setIsPlaying(true);
-        if (player) {
+        if (player && typeof player.playVideo === 'function') {
           try {
             player.playVideo();
           } catch (e) {}
@@ -367,7 +290,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
 
         {/* Instant High-Resolution Local Poster: LCP element with explicit dimensions */}
         <div
-          className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-500 ${
+          className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-300 ${
             isVideoPlaying ? 'opacity-0' : 'opacity-100'
           }`}
         >
@@ -385,7 +308,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
 
         {/* Paused Dark Backdrop: completely conceals YouTube's internal canvas when user pauses */}
         {hasSound && !isPlaying && (
-          <div className="absolute inset-0 z-20 bg-black/85 backdrop-blur-sm pointer-events-none transition-opacity duration-300" />
+          <div className="absolute inset-0 z-20 bg-black/85 backdrop-blur-sm pointer-events-none transition-opacity duration-200" />
         )}
 
         {/* Custom VTurb Click Layer - intercepts 100% of user clicks */}

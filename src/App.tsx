@@ -32,45 +32,29 @@ export default function App() {
         <HeroSection />
 
         {/* 3. Demonstração Visual: Antes & Depois direto (3 demonstrações fortes) */}
-        <div className="content-auto">
-          <BeforeAfterSection />
-        </div>
+        <BeforeAfterSection />
 
         {/* 4. Benefícios Essenciais: Vitrine de elementos PNG +15.000 e categorias essenciais */}
-        <div className="content-auto">
-          <FeaturesLibrarySection />
-        </div>
+        <FeaturesLibrarySection />
 
         {/* 5. Provas Reais Verificáveis: Depoimentos e avaliações de clientes */}
-        <div className="content-auto">
-          <TestimonialsSection />
-        </div>
+        <TestimonialsSection />
 
         {/* 6. Bônus Resumidos: 4 bônus especiais com fotos oficiais e descrições diretas */}
-        <div className="content-auto">
-          <BonusesSection />
-        </div>
+        <BonusesSection />
 
         {/* 7. SEÇÃO DE PLANOS (Trazida para o centro da conversão - 100% preservada) */}
-        <div className="content-auto">
-          <PricingSection />
-        </div>
+        <PricingSection />
 
         {/* 8. Garantia Incondicional de 15 Dias */}
-        <div className="content-auto">
-          <GuaranteeSection />
-        </div>
+        <GuaranteeSection />
 
         {/* 9. Dúvidas Decisivas: FAQ enxuto com as perguntas que destravam a compra */}
-        <div className="content-auto">
-          <FAQSection />
-        </div>
+        <FAQSection />
       </main>
 
       {/* 10. Footer */}
-      <div className="content-auto">
-        <Footer onOpenLegal={(type) => setLegalModalType(type)} />
-      </div>
+      <Footer onOpenLegal={(type) => setLegalModalType(type)} />
 
       {/* 11. Floating Sticky CTA Bar */}
       <StickyBottomBar />
