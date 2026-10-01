@@ -64,7 +64,13 @@ export default defineConfig(({ mode }) => {
       reportCompressedSize: false,
       chunkSizeWarningLimit: 800,
     },
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'lucide-react'],
+    },
     server: {
+      warmup: {
+        clientFiles: ['./src/main.tsx', './src/App.tsx', './src/components/HeroSection.tsx'],
+      },
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: process.env.DISABLE_HMR === 'true' ? null : {},

@@ -35,10 +35,14 @@ export default function App() {
         <BeforeAfterSection />
 
         {/* 4. Benefícios Essenciais: Vitrine de elementos PNG +15.000 e categorias essenciais */}
-        <FeaturesLibrarySection />
+        <div className="content-auto">
+          <FeaturesLibrarySection />
+        </div>
 
         {/* 5. Provas Reais Verificáveis: Depoimentos e avaliações de clientes */}
-        <TestimonialsSection />
+        <div className="content-auto">
+          <TestimonialsSection />
+        </div>
 
         {/* 6. Bônus Resumidos: 4 bônus especiais com fotos oficiais e descrições diretas */}
         <BonusesSection />
@@ -47,14 +51,20 @@ export default function App() {
         <PricingSection />
 
         {/* 8. Garantia Incondicional de 15 Dias */}
-        <GuaranteeSection />
+        <div className="content-auto">
+          <GuaranteeSection />
+        </div>
 
         {/* 9. Dúvidas Decisivas: FAQ enxuto com as perguntas que destravam a compra */}
-        <FAQSection />
+        <div className="content-auto">
+          <FAQSection />
+        </div>
       </main>
 
       {/* 10. Footer */}
-      <Footer onOpenLegal={(type) => setLegalModalType(type)} />
+      <div className="content-auto">
+        <Footer onOpenLegal={(type) => setLegalModalType(type)} />
+      </div>
 
       {/* 11. Floating Sticky CTA Bar */}
       <StickyBottomBar />
