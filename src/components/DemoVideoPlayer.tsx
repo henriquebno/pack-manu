@@ -11,6 +11,7 @@ declare global {
       Player: new (
         element: HTMLElement | string,
         options: {
+          host?: string;
           videoId?: string;
           playerVars?: Record<string, unknown>;
           events?: {
@@ -44,12 +45,13 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
   const playerRef = useRef<YTPlayerInstance | null>(null);
   const hasSoundRef = useRef<boolean>(false);
   const isPlayingRef = useRef<boolean>(true);
+  const isInitializedRef = useRef<boolean>(false);
 
   const [hasSound, setHasSound] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Synchronize state with refs for event callbacks
+  // Synchronize state with refs for callback access
   useEffect(() => {
     hasSoundRef.current = hasSound;
   }, [hasSound]);
@@ -62,8 +64,9 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
     let isMounted = true;
     let pollInterval: ReturnType<typeof setInterval> | null = null;
     let ytCheckInterval: ReturnType<typeof setInterval> | null = null;
+    let fallbackTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const initPlayer = () => {
+    const createPlayer = (unmuted: boolean = false) => {
       if (!isMounted || playerRef.current || !containerRef.current) return;
       if (!window.YT || !window.YT.Player) return;
 
@@ -75,10 +78,11 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
       try {
         const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : undefined;
         playerRef.current = new window.YT.Player(mountEl, {
+          host: 'https://www.youtube-nocookie.com',
           videoId,
           playerVars: {
             autoplay: 1,
-            mute: 1,
+            mute: unmuted ? 0 : 1,
             controls: 0,
             disablekb: 1,
             fs: 0,
@@ -93,7 +97,13 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
             onReady: (event) => {
               if (!isMounted) return;
               try {
-                event.target.mute();
+                if (unmuted || hasSoundRef.current) {
+                  event.target.unMute();
+                  event.target.setVolume(100);
+                  event.target.seekTo(0, true);
+                } else {
+                  event.target.mute();
+                }
                 event.target.playVideo();
               } catch (e) {}
             },
@@ -103,7 +113,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
 
               // 1 = PLAYING
               if (state === 1) {
-                setIsVideoPlaying(prev => (prev ? prev : true));
+                setIsVideoPlaying(true);
                 setIsPlaying(true);
               }
               // 0 = ENDED -> Seamless instant rewind & replay
@@ -112,14 +122,12 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
                   event.target.seekTo(0, true);
                   event.target.playVideo();
                 } catch (e) {}
-                if (hasSoundRef.current) {
-                  setIsPlaying(true);
-                }
+                setIsPlaying(true);
               }
               // 2 = PAUSED
               else if (state === 2) {
                 if (!hasSoundRef.current) {
-                  // Keep playing in muted preview mode
+                  // While muted in background preview, keep looping
                   try {
                     event.target.playVideo();
                   } catch (e) {}
@@ -133,11 +141,12 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
       } catch (err) {}
     };
 
-    const loadApiAndInit = () => {
-      if (!isMounted || playerRef.current) return;
+    const loadApiAndInit = (unmuted: boolean = false) => {
+      if (!isMounted || playerRef.current || isInitializedRef.current) return;
+      isInitializedRef.current = true;
 
       if (window.YT && window.YT.Player) {
-        initPlayer();
+        createPlayer(unmuted);
       } else {
         if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
           const tag = document.createElement('script');
@@ -149,21 +158,37 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
         const prevCallback = window.onYouTubeIframeAPIReady;
         window.onYouTubeIframeAPIReady = () => {
           if (prevCallback) prevCallback();
-          initPlayer();
+          createPlayer(unmuted);
         };
 
         ytCheckInterval = setInterval(() => {
           if (window.YT && window.YT.Player) {
             if (ytCheckInterval) clearInterval(ytCheckInterval);
-            initPlayer();
+            createPlayer(unmuted);
           }
-        }, 100);
+        }, 120);
       }
     };
 
-    loadApiAndInit();
+    // Initialize player on first user interaction or after 3.2s
+    const triggerInit = () => {
+      removeListeners();
+      loadApiAndInit(false);
+    };
 
-    // High-precision loop watchdog (100ms): seamless loop without black screen
+    const removeListeners = () => {
+      ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach((evt) => {
+        window.removeEventListener(evt, triggerInit);
+      });
+    };
+
+    ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach((evt) => {
+      window.addEventListener(evt, triggerInit, { once: true, passive: true });
+    });
+
+    fallbackTimer = setTimeout(triggerInit, 3200);
+
+    // High-precision loop watchdog (120ms): seamless loop without black screen
     pollInterval = setInterval(() => {
       const player = playerRef.current;
       if (!player) return;
@@ -173,7 +198,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           const cur = player.getCurrentTime();
 
           if (cur > 0.05) {
-            setIsVideoPlaying(prev => (prev ? prev : true));
+            setIsVideoPlaying(true);
           }
 
           // Seek back to 0.00 right before end (0.35s) to avoid YouTube end-screen buffer
@@ -193,10 +218,12 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           }
         }
       } catch (e) {}
-    }, 100);
+    }, 120);
 
     return () => {
       isMounted = false;
+      removeListeners();
+      if (fallbackTimer) clearTimeout(fallbackTimer);
       if (ytCheckInterval) clearInterval(ytCheckInterval);
       if (pollInterval) clearInterval(pollInterval);
       if (playerRef.current && typeof playerRef.current.destroy === 'function') {
@@ -225,6 +252,66 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           player.seekTo(0, true);
           player.playVideo();
         } catch (e) {}
+      } else {
+        // If clicked before idle timeout, immediately load API unmuted
+        if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+          const tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/iframe_api';
+          tag.async = true;
+          document.head.appendChild(tag);
+        }
+
+        const checkApi = setInterval(() => {
+          if (window.YT && window.YT.Player && containerRef.current) {
+            clearInterval(checkApi);
+            const container = containerRef.current;
+            container.innerHTML = '<div id="vturb-yt-iframe-slot"></div>';
+            const mountEl = document.getElementById('vturb-yt-iframe-slot');
+            if (mountEl) {
+              const origin = typeof window !== 'undefined' ? window.location.origin : undefined;
+              playerRef.current = new window.YT.Player(mountEl, {
+                host: 'https://www.youtube-nocookie.com',
+                videoId,
+                playerVars: {
+                  autoplay: 1,
+                  mute: 0,
+                  controls: 0,
+                  disablekb: 1,
+                  fs: 0,
+                  rel: 0,
+                  modestbranding: 1,
+                  playsinline: 1,
+                  iv_load_policy: 3,
+                  showinfo: 0,
+                  origin,
+                },
+                events: {
+                  onReady: (event) => {
+                    try {
+                      event.target.unMute();
+                      event.target.setVolume(100);
+                      event.target.seekTo(0, true);
+                      event.target.playVideo();
+                    } catch (e) {}
+                  },
+                  onStateChange: (event) => {
+                    if (event.data === 1) {
+                      setIsVideoPlaying(true);
+                      setIsPlaying(true);
+                    } else if (event.data === 0) {
+                      try {
+                        event.target.seekTo(0, true);
+                        event.target.playVideo();
+                      } catch (e) {}
+                    } else if (event.data === 2) {
+                      setIsPlaying(false);
+                    }
+                  },
+                },
+              });
+            }
+          }
+        }, 100);
       }
     } else {
       // Subsequent clicks: toggle play / pause

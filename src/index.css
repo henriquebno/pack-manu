@@ -92,3 +92,9 @@
   scrollbar-width: none;
 }
 
+/* Below-the-fold render optimization: skips layout and style work until element enters viewport */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 750px;
+}
+

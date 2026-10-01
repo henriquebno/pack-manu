@@ -40,7 +40,7 @@
       })();
     </script>
 
-    <!-- Meta Pixel Code (Queue initialized synchronously, script execution deferred for TBT) -->
+    <!-- Meta Pixel Code: Immediate synchronous queue in memory, non-blocking deferred network download -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -53,11 +53,19 @@
         s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s);
       }
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(loadFbq, { timeout: 1200 });
-      } else {
-        setTimeout(loadFbq, 800);
+      var triggered = false;
+      function onInteract() {
+        if (triggered) return;
+        triggered = true;
+        loadFbq();
+        ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach(function(evt) {
+          window.removeEventListener(evt, onInteract);
+        });
       }
+      ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach(function(evt) {
+        window.addEventListener(evt, onInteract, { once: true, passive: true });
+      });
+      setTimeout(onInteract, 3500);
       }(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '956876377415583');
@@ -72,26 +80,42 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Preload Critical LCP Video Poster for Instant Hero Render -->
+    <!-- Preload Critical LCP Video Poster for Instant Hero Render (< 1.5s) -->
     <link rel="preload" as="image" href="/video-poster-stories.jpg" fetchpriority="high" />
 
-    <!-- Optimized Preconnect: Only critical origins -->
+    <!-- Preconnect to Font Origin -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Optimized Google Fonts: Only exact weights used (Plus Jakarta Sans) with font-display: swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <!-- Optimized Google Fonts: font-display: swap with non-blocking media swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" />
     </noscript>
 
-    <!-- Script de UTMs Utmify (deferred) -->
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-xcod-sck
-      data-utmify-prevent-subids
-      defer
-    ></script>
+    <!-- Script de UTMs Utmify: deferred to first user interaction or idle to unblock FCP -->
+    <script>
+      (function() {
+        var utmTriggered = false;
+        function loadUtmify() {
+          if (utmTriggered || document.querySelector('script[src*="utmify"]')) return;
+          utmTriggered = true;
+          var s = document.createElement('script');
+          s.src = 'https://cdn.utmify.com.br/scripts/utms/latest.js';
+          s.setAttribute('data-utmify-prevent-xcod-sck', '');
+          s.setAttribute('data-utmify-prevent-subids', '');
+          s.async = true;
+          document.head.appendChild(s);
+          ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach(function(evt) {
+            window.removeEventListener(evt, loadUtmify);
+          });
+        }
+        ['touchstart', 'scroll', 'click', 'keydown', 'mousemove'].forEach(function(evt) {
+          window.addEventListener(evt, loadUtmify, { once: true, passive: true });
+        });
+        setTimeout(loadUtmify, 3200);
+      })();
+    </script>
   </head>
   <body class="bg-[#FAF9F6] text-[#1D1D1F] antialiased selection:bg-rose-100 selection:text-rose-900">
     <noscript>
@@ -104,4 +128,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
