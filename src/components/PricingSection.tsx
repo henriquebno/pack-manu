@@ -8,7 +8,7 @@ export const PricingSection: React.FC = () => {
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
 
   return (
-    <section id="oferta" className="py-14 md:py-24 bg-[#FBF9F6] relative border-t border-neutral-200/60 scroll-mt-12 sm:scroll-mt-16">
+    <section id="oferta" className="py-14 md:py-24 bg-[#FBF9F6] relative border-t border-neutral-200/60 scroll-mt-4 sm:scroll-mt-8">
       <span id="planos" className="sr-only" />
       <span id="valores" className="sr-only" />
       <div className="max-w-5xl mx-auto px-4 sm:px-6">

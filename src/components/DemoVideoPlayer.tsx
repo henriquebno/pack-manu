@@ -11,12 +11,12 @@ declare global {
       Player: new (
         element: HTMLElement | string,
         options: {
-          host?: string;
           videoId?: string;
           playerVars?: Record<string, unknown>;
           events?: {
             onReady?: (event: { target: YTPlayerInstance }) => void;
             onStateChange?: (event: { data: number; target: YTPlayerInstance }) => void;
+            onError?: (event: { data: number }) => void;
           };
         }
       ) => YTPlayerInstance;
@@ -43,10 +43,16 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<YTPlayerInstance | null>(null);
+
+  // Synchronous state refs to prevent any asynchronous state race conditions
   const hasSoundRef = useRef<boolean>(false);
   const isPlayingRef = useRef<boolean>(true);
-  const isInitializedRef = useRef<boolean>(false);
+  const isUserPausedRef = useRef<boolean>(false);
+  const isLoopSeekingRef = useRef<boolean>(false);
+  const pendingPlayRef = useRef<boolean>(false);
+  const isVideoPlayingRef = useRef<boolean>(false);
 
+  // React states for UI rendering
   const [hasSound, setHasSound] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -55,7 +61,6 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
     let isMounted = true;
     let pollInterval: ReturnType<typeof setInterval> | null = null;
     let ytCheckInterval: ReturnType<typeof setInterval> | null = null;
-    let initTimer: ReturnType<typeof setTimeout> | null = null;
 
     const createPlayer = () => {
       if (!isMounted || playerRef.current || !containerRef.current) return;
@@ -67,9 +72,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
       if (!mountEl) return;
 
       try {
-        const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : undefined;
         playerRef.current = new window.YT.Player(mountEl, {
-          host: 'https://www.youtube-nocookie.com',
           videoId,
           playerVars: {
             autoplay: 1,
@@ -82,20 +85,27 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
             playsinline: 1,
             iv_load_policy: 3,
             showinfo: 0,
-            origin,
+            autohide: 1,
           },
           events: {
             onReady: (event) => {
               if (!isMounted) return;
+              const player = event.target;
               try {
-                if (hasSoundRef.current) {
-                  event.target.unMute();
-                  event.target.setVolume(100);
-                  event.target.seekTo(0, true);
+                if (pendingPlayRef.current || hasSoundRef.current) {
+                  player.unMute();
+                  player.setVolume(100);
+                  player.seekTo(0, true);
+                  player.playVideo();
+                  setHasSound(true);
+                  setIsPlaying(true);
+                  hasSoundRef.current = true;
+                  isPlayingRef.current = true;
+                  isUserPausedRef.current = false;
                 } else {
-                  event.target.mute();
+                  player.mute();
+                  player.playVideo();
                 }
-                event.target.playVideo();
               } catch (e) {}
             },
             onStateChange: (event) => {
@@ -104,11 +114,16 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
 
               // 1 = PLAYING
               if (state === 1) {
-                setIsVideoPlaying(true);
+                if (!isVideoPlayingRef.current) {
+                  isVideoPlayingRef.current = true;
+                  setIsVideoPlaying(true);
+                }
                 setIsPlaying(true);
                 isPlayingRef.current = true;
+                isUserPausedRef.current = false;
+                isLoopSeekingRef.current = false;
               }
-              // 0 = ENDED -> Seamless instant replay loop
+              // 0 = ENDED -> Instant seamless replay
               else if (state === 0) {
                 try {
                   event.target.seekTo(0, true);
@@ -116,18 +131,25 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
                 } catch (e) {}
                 setIsPlaying(true);
                 isPlayingRef.current = true;
+                isLoopSeekingRef.current = false;
               }
               // 2 = PAUSED
               else if (state === 2) {
-                if (!hasSoundRef.current) {
-                  // If YouTube briefly paused during muted autoplay, keep playing
+                if (isUserPausedRef.current) {
+                  setIsPlaying(false);
+                  isPlayingRef.current = false;
+                } else {
                   try {
                     event.target.playVideo();
                   } catch (e) {}
-                } else {
-                  setIsPlaying(false);
-                  isPlayingRef.current = false;
                 }
+              }
+            },
+            onError: () => {
+              if (playerRef.current) {
+                try {
+                  playerRef.current.playVideo();
+                } catch (e) {}
               }
             },
           },
@@ -135,10 +157,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
       } catch (err) {}
     };
 
-    const loadApiAndInit = () => {
-      if (!isMounted || playerRef.current || isInitializedRef.current) return;
-      isInitializedRef.current = true;
-
+    const initApi = () => {
       if (window.YT && window.YT.Player) {
         createPlayer();
       } else {
@@ -160,49 +179,60 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
             if (ytCheckInterval) clearInterval(ytCheckInterval);
             createPlayer();
           }
-        }, 100);
+        }, 80);
       }
     };
 
-    // Pre-initialize player 500ms after mount: ready before the user clicks
-    initTimer = setTimeout(loadApiAndInit, 500);
+    initApi();
 
-    // Watchdog: handles seamless loop without black screen
+    // High-performance Watchdog: maintains seamless infinite loop and prevents multi-seek freezes
     pollInterval = setInterval(() => {
       const player = playerRef.current;
       if (!player) return;
 
       try {
-        // If sound is active (user is actively watching with audio):
         if (hasSoundRef.current) {
-          // Restart seamlessly when ended
-          if (typeof player.getPlayerState === 'function' && player.getPlayerState() === 0) {
-            player.seekTo(0, true);
-            player.playVideo();
+          if (typeof player.getPlayerState === 'function') {
+            const state = player.getPlayerState();
+            if (state === 0 && !isLoopSeekingRef.current) {
+              isLoopSeekingRef.current = true;
+              player.seekTo(0, true);
+              player.playVideo();
+              setTimeout(() => {
+                isLoopSeekingRef.current = false;
+              }, 800);
+            }
           }
           return;
         }
 
-        // Muted background preview loop:
-        if (typeof player.getCurrentTime === 'function') {
+        if (typeof player.getCurrentTime === 'function' && typeof player.getDuration === 'function') {
           const cur = player.getCurrentTime();
-          if (cur > 0.05) {
+          const dur = player.getDuration();
+
+          if (cur > 0.05 && !isVideoPlayingRef.current) {
+            isVideoPlayingRef.current = true;
             setIsVideoPlaying(true);
           }
-          // Rewind 0.35s before video ends to avoid YouTube end-screen buffer
-          if (typeof player.getDuration === 'function') {
-            const dur = player.getDuration();
-            if (dur > 0 && cur >= dur - 0.35) {
+
+          if (dur > 0 && cur >= dur - 0.4) {
+            if (!isLoopSeekingRef.current) {
+              isLoopSeekingRef.current = true;
               player.seekTo(0, true);
+              player.playVideo();
+              setTimeout(() => {
+                isLoopSeekingRef.current = false;
+              }, 800);
             }
+          } else if (cur < dur - 1.0) {
+            isLoopSeekingRef.current = false;
           }
         }
       } catch (e) {}
-    }, 150);
+    }, 120);
 
     return () => {
       isMounted = false;
-      if (initTimer) clearTimeout(initTimer);
       if (ytCheckInterval) clearInterval(ytCheckInterval);
       if (pollInterval) clearInterval(pollInterval);
       if (playerRef.current && typeof playerRef.current.destroy === 'function') {
@@ -214,14 +244,16 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
     };
   }, [videoId]);
 
-  // Main VTurb interaction handler: instant, zero-stutter audio activation
   const handlePlayerClick = () => {
     const player = playerRef.current;
 
     if (!hasSoundRef.current) {
-      // Synchronously set ref FIRST to prevent any muted watchdog collision
       hasSoundRef.current = true;
       isPlayingRef.current = true;
+      isUserPausedRef.current = false;
+      pendingPlayRef.current = true;
+      isLoopSeekingRef.current = false;
+
       setHasSound(true);
       setIsPlaying(true);
       setIsVideoPlaying(true);
@@ -235,9 +267,9 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
         } catch (e) {}
       }
     } else {
-      // Subsequent clicks: toggle play / pause
       if (isPlayingRef.current) {
         isPlayingRef.current = false;
+        isUserPausedRef.current = true;
         setIsPlaying(false);
         if (player && typeof player.pauseVideo === 'function') {
           try {
@@ -246,6 +278,7 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
         }
       } else {
         isPlayingRef.current = true;
+        isUserPausedRef.current = false;
         setIsPlaying(true);
         if (player && typeof player.playVideo === 'function') {
           try {
@@ -261,18 +294,21 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
   return (
     <div className="relative mx-auto max-w-[320px] sm:max-w-[340px] md:max-w-[360px] w-full rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 bg-white/90 shadow-2xl shadow-rose-950/15 border border-black/[0.08] transition-all">
       {/* Video Container in Stories format (aspect-[9/16]) */}
-      <div className="relative w-full aspect-[9/16] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-[#1c1917] to-[#0c0a09] shadow-inner">
+      <div className="relative w-full aspect-[9/16] rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-inner">
         
-        {/* Style injection to scale and center the generated YouTube iframe */}
+        {/* Style injection:
+            - width: 100% preserves 100% of the horizontal screen without any zoom or cropping (all folders and text visible)
+            - top: -64px and height: calc(100% + 124px) pushes the YouTube title, avatar, and "Shorts" logo completely off-screen beyond the overflow-hidden boundary
+        */}
         <style dangerouslySetInnerHTML={{
           __html: `
             #vturb-player-wrapper iframe {
               position: absolute !important;
-              top: 50% !important;
-              left: 50% !important;
-              transform: translate(-50%, -50%) !important;
-              width: 365% !important;
-              height: 118% !important;
+              top: -64px !important;
+              left: 0 !important;
+              width: 100% !important;
+              height: calc(100% + 124px) !important;
+              transform: none !important;
               max-width: none !important;
               pointer-events: none !important;
               user-select: none !important;
@@ -306,12 +342,9 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
           />
         </div>
 
-        {/* Paused Dark Backdrop: completely conceals YouTube's internal canvas when user pauses */}
-        {hasSound && !isPlaying && (
-          <div className="absolute inset-0 z-20 bg-black/85 backdrop-blur-sm pointer-events-none transition-opacity duration-200" />
-        )}
-
-        {/* Custom VTurb Click Layer - intercepts 100% of user clicks */}
+        {/* Custom VTurb Click Layer & Play Button:
+            Completely conceals YouTube's internal pause icon (||) whenever video is paused or muted
+        */}
         <div
           onClick={handlePlayerClick}
           className="absolute inset-0 z-30 cursor-pointer flex items-center justify-center select-none"
@@ -325,10 +358,11 @@ export const DemoVideoPlayer: React.FC<DemoVideoPlayerProps> = ({
             }
           }}
         >
-          {/* Central Button: ONLY the play symbol/emoji, without any text */}
           {showCentralPlay && (
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-rose-600 to-pink-600 text-white flex items-center justify-center shadow-2xl shadow-rose-600/60 hover:scale-110 active:scale-95 transition-transform duration-200 border-2 border-white/40 backdrop-blur-xs animate-pulse">
-              <Play className="w-8 h-8 sm:w-9 sm:h-9 fill-white text-white translate-x-0.5" />
+            <div className="absolute inset-0 bg-black/45 backdrop-blur-xs flex items-center justify-center transition-opacity duration-150">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-rose-600 to-pink-600 text-white flex items-center justify-center shadow-2xl shadow-rose-600/60 hover:scale-110 active:scale-95 transition-transform duration-150 border-2 border-white/40">
+                <Play className="w-8 h-8 sm:w-9 sm:h-9 fill-white text-white translate-x-0.5" />
+              </div>
             </div>
           )}
         </div>
