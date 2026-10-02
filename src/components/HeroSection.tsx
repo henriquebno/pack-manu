@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { UnderlineStroke } from './TitleAccents';
-import { DemoVideoPlayer } from './DemoVideoPlayer';
 
 export const HeroSection: React.FC = () => {
   return (
@@ -33,13 +32,21 @@ export const HeroSection: React.FC = () => {
           <p className="mt-3.5 text-sm sm:text-base md:text-lg text-neutral-600 max-w-xl font-sans-body leading-relaxed">
             Tenha +15.000 figurinhas e elementos prontos para usar em Stories de trabalho, rotina, academia, fé, beleza, comida, viagens e muito mais.
           </p>
-          <p className="mt-4 text-sm sm:text-base font-semibold text-neutral-800 font-sans-body">
-            Veja como funciona 👇🏼
-          </p>
 
-          {/* Hero Video Player (VTurb Style Stories format) - Demonstration of pack access */}
-          <div className="relative mt-8 sm:mt-10 w-full flex justify-center">
-            <DemoVideoPlayer videoId="xav7Ho6tYKw" />
+          {/* Hero Mockup - High converting visual presentation */}
+          <div className="relative mt-6 sm:mt-8 w-full max-w-[560px] sm:max-w-[620px] md:max-w-[680px] flex justify-center">
+            <picture className="w-full flex justify-center">
+              <source media="(max-width: 640px)" srcSet="/images/hero-mockup-new-mobile.webp" type="image/webp" />
+              <img
+                src="/images/hero-mockup-new.webp"
+                alt="Mockup do Pack Manu Stories com mais de 15.000 figurinhas e elementos"
+                width={960}
+                height={960}
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-auto object-contain drop-shadow-xl select-none"
+              />
+            </picture>
           </div>
 
           {/* CTA Buttons & Microcopy - placed below mockup */}

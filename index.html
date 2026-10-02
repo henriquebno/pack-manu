@@ -80,8 +80,9 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Preload Critical LCP Video Poster for Instant Hero Render (< 1.5s) -->
-    <link rel="preload" as="image" href="/video-poster-stories.jpg" fetchpriority="high" />
+    <!-- Preload Critical LCP Hero Mockup for Instant Hero Render (< 0.5s) -->
+    <link rel="preload" as="image" href="/images/hero-mockup-new-mobile.webp" media="(max-width: 640px)" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/hero-mockup-new.webp" media="(min-width: 641px)" type="image/webp" fetchpriority="high" />
 
     <!-- Preconnect to Font Origin -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
